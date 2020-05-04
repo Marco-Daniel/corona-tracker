@@ -24,7 +24,6 @@ const LineChart = ({ data }) => {
               ticks: {
                 min: firstDate,
                 max: lastDate,
-                sampleSize: 10,
               },
               gridLines: {
                 drawOnChartArea: false,

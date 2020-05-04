@@ -24,7 +24,6 @@ const CompareLineChart = ({ data1, label1, data2, label2 }) => {
               ticks: {
                 min: firstDate,
                 max: lastDate,
-                sampleSize: 10,
               },
               gridLines: {
                 drawOnChartArea: false,
