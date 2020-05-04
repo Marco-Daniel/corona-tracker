@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react"
 import CircularProgress from "@material-ui/core/CircularProgress"
+import { useTheme } from "@material-ui/core/styles"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import DataDisplay from "../components/DataDisplay"
+import DataDisplay from "../components/dataDisplay"
 
 const IndexPage = () => {
   const [data, setData] = useState([])
+  const theme = useTheme()
 
   useEffect(() => {
     // useEffect can't be a async function of itself
@@ -23,7 +25,7 @@ const IndexPage = () => {
       )
 
       const json = await data.json()
-      setData(json.Netherlands)
+      setData(json)
     }
 
     asyncWork()
@@ -36,8 +38,9 @@ const IndexPage = () => {
         style={{
           width: "100%",
           height: "95vh",
+          padding: `${theme.spacing(4)}px`,
           display: "flex",
-          alignItems: "center",
+          alignItems: "flex-start",
           justifyContent: "center",
         }}
       >
