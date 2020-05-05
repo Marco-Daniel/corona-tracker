@@ -25,7 +25,7 @@ const Header = ({ siteTitle }) => {
   const classes = useStyles()
 
   return (
-    <AppBar position="sticky" className={classes.root}>
+    <AppBar position="fixed" className={classes.root}>
       <Toolbar className={classes.toolbar}>
         <span style={{ marginRight: "auto" }}>
           <ToggleModeSwitch />

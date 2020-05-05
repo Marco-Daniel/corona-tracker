@@ -9,6 +9,7 @@ import Tab from "@material-ui/core/Tab"
 import Box from "@material-ui/core/Box"
 import LineChart from "./lineChart"
 import CompareCountries from "./compareCountries"
+import FetchNewsItems from "./fetchNewsItems"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -56,6 +57,7 @@ const DataGraph = ({ nederlandData, globalData, allData }) => {
           <Tab label="Nederland" {...a11yProps(0)} />
           <Tab label="Wereldwijd" {...a11yProps(1)} />
           <Tab label="Vergelijk" {...a11yProps(2)} />
+          <Tab label="Laatste nieuws" {...a11yProps(3)} />
         </Tabs>
       </AppBar>
       <CardContent>
@@ -77,6 +79,9 @@ const DataGraph = ({ nederlandData, globalData, allData }) => {
             globalData={globalData}
             allData={allData}
           />
+        </TabPanel>
+        <TabPanel value={value} index={3}>
+          <FetchNewsItems />
         </TabPanel>
       </CardContent>
     </Card>
