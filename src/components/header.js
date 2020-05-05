@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography"
 import { makeStyles } from "@material-ui/core/styles"
 
 import InfoButton from "./infoButton"
+import ToggleModeSwitch from "./toggleModeSwitch"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -14,9 +15,9 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.primary.dark,
     zIndex: theme.zIndex.appBar + 1,
   },
-  title: {
-    flexGrow: 1,
-    textAlign: "Center",
+  toolbar: {
+    display: "flex",
+    justifyContent: "center",
   },
 }))
 
@@ -25,10 +26,11 @@ const Header = ({ siteTitle }) => {
 
   return (
     <AppBar position="sticky" className={classes.root}>
-      <Toolbar>
-        <Typography variant="h6" className={classes.title}>
-          {siteTitle}
-        </Typography>
+      <Toolbar className={classes.toolbar}>
+        <span style={{ marginRight: "auto" }}>
+          <ToggleModeSwitch />
+        </span>
+        <Typography variant="h6">{siteTitle}</Typography>
         <span style={{ marginLeft: "auto" }}>
           <InfoButton />
         </span>
