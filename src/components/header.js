@@ -6,6 +6,8 @@ import Toolbar from "@material-ui/core/Toolbar"
 import Typography from "@material-ui/core/Typography"
 import { makeStyles } from "@material-ui/core/styles"
 
+import InfoButton from "./infoButton"
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -27,6 +29,9 @@ const Header = ({ siteTitle }) => {
         <Typography variant="h6" className={classes.title}>
           {siteTitle}
         </Typography>
+        <span style={{ marginLeft: "auto" }}>
+          <InfoButton />
+        </span>
       </Toolbar>
     </AppBar>
   )
