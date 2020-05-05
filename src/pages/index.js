@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
     position: "fixed",
     top: 0,
     left: 0,
-    width: "98vw",
+    width: "99vw",
     height: "98vh",
     zIndex: -100,
   },
@@ -84,7 +84,7 @@ const IndexPage = () => {
               enable: true,
               speed: 2.5,
               random: true,
-              straight: false, // Whether they'll shift left and right while moving.
+              straight: false,
               bounce: true,
             },
           },
