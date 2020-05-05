@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from "react"
 import Chart from "chart.js"
 import chartWidth from "../globals/chartWidth"
 import createDataSet from "../globals/createDataSet"
+import Typography from "@material-ui/core/Typography"
 
 const CompareLineChart = ({ data1, label1, data2, label2 }) => {
   const canvasRef = useRef()
@@ -78,12 +79,17 @@ const CompareLineChart = ({ data1, label1, data2, label2 }) => {
   }, [label1, label2, data1, data2])
 
   return (
-    <div
-      className="chart-container"
-      style={{ position: "relative", maxWidth: chartWidth }}
-    >
-      <canvas ref={canvasRef} />
-    </div>
+    <>
+      <Typography variant="caption" display="block" gutterBottom align="center">
+        Klik op de labels om ze aan of uit te zetten
+      </Typography>
+      <div
+        className="chart-container"
+        style={{ position: "relative", maxWidth: chartWidth }}
+      >
+        <canvas ref={canvasRef} />
+      </div>
+    </>
   )
 }
 

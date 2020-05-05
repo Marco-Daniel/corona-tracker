@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from "react"
 import Chart from "chart.js"
 import chartWidth from "../globals/chartWidth"
 import createDataSet from "../globals/createDataSet"
+import Typography from "@material-ui/core/Typography"
 
 const LineChart = ({ data }) => {
   const canvasRef = useRef()
@@ -52,12 +53,17 @@ const LineChart = ({ data }) => {
   }, [])
 
   return (
-    <div
-      className="chart-container"
-      style={{ position: "relative", maxWidth: chartWidth }}
-    >
-      <canvas ref={canvasRef} />
-    </div>
+    <>
+      <Typography variant="caption" display="block" gutterBottom align="center">
+        Klik op de labels om ze aan of uit te zetten
+      </Typography>
+      <div
+        className="chart-container"
+        style={{ position: "relative", maxWidth: chartWidth }}
+      >
+        <canvas ref={canvasRef} />
+      </div>
+    </>
   )
 }
 
