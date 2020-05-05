@@ -1,8 +1,11 @@
+require("dotenv").config()
+
 module.exports = {
   siteMetadata: {
     title: `Corona Tracker`,
     description: `Track Corona`,
     author: `M. D. Leguijt`,
+    newsAPIKey: process.env.NEWS_API_KEY,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
