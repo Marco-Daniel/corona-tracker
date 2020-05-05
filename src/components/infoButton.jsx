@@ -41,7 +41,15 @@ const InfoButton = () => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>Bekijk broncode</MenuItem>
+        <MenuItem
+          onClick={handleClose}
+          component="a"
+          href="https://github.com/Marco-Daniel/corona-tracker"
+          rel="noreferrer noopener"
+          target="_blank"
+        >
+          Bekijk broncode
+        </MenuItem>
         <MenuItem onClick={handleClose}>Over deze app</MenuItem>
         <MenuItem
           onClick={handleClose}
