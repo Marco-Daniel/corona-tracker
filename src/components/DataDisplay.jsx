@@ -11,7 +11,7 @@ const DataDisplay = ({ data }) => {
   const latestGlobalData = globalData[data.Netherlands.length - 1]
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={4}>
       <Grid item xs={12}>
         <LatestData nederland={latestNederlandData} global={latestGlobalData} />
       </Grid>

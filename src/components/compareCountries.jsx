@@ -1,28 +1,10 @@
 import React, { useState } from "react"
 import Typography from "@material-ui/core/Typography"
 import CompareLineChart from "./compareLineChart"
-import Button from "@material-ui/core/Button"
-import Dialog from "@material-ui/core/Dialog"
-import DialogActions from "@material-ui/core/DialogActions"
-import DialogContent from "@material-ui/core/DialogContent"
-import InputLabel from "@material-ui/core/InputLabel"
 import Input from "@material-ui/core/Input"
-import FormControl from "@material-ui/core/FormControl"
-import DialogTitle from "@material-ui/core/DialogTitle"
 import Select from "@material-ui/core/Select"
-import { useTheme, makeStyles } from "@material-ui/core/styles"
-
-// const useStyles = makeStyles(theme => ({
-//   container: {
-//     display: "flex",
-//     flexDirection: "column",
-//     flexWrap: "wrap",
-//   },
-//   formControl: {
-//     margin: theme.spacing(1),
-//     minWidth: 120,
-//   },
-// }))
+import { useTheme } from "@material-ui/core/styles"
+import CompareDataTable from "./compareDataTable"
 
 const CompareCountries = ({ nederlandData, globalData, allData }) => {
   const [data1, setData1] = useState(globalData)
@@ -31,10 +13,12 @@ const CompareCountries = ({ nederlandData, globalData, allData }) => {
   const [select2, setSelect2] = useState("")
   const theme = useTheme()
 
+  const Spacer = () => <div style={{ height: theme.spacing(2) }} />
+
   return (
     <>
       <Typography variant="h6" align="center">
-        Vergelijk covid-19 verloop met andere landen
+        Vergelijk covid-19 tussen verschillende landen
       </Typography>
 
       <div
@@ -49,11 +33,16 @@ const CompareCountries = ({ nederlandData, globalData, allData }) => {
           defaultValue=""
           onChange={event => {
             setSelect1(event.target.value)
-            setData1(allData[event.target.value])
+            if (event.target.value === "Wereldwijd") {
+              setData1(globalData)
+            } else {
+              setData1(allData[event.target.value])
+            }
           }}
           input={<Input id="selecteer eerste land" />}
         >
           <option aria-label="None" value="" />
+          <option value="Wereldwijd">Wereldwijd</option>
           {Object.keys(allData).map(country => (
             <option key={country} value={country}>
               {country}
@@ -66,11 +55,16 @@ const CompareCountries = ({ nederlandData, globalData, allData }) => {
           defaultValue=""
           onChange={event => {
             setSelect2(event.target.value)
-            setData2(allData[event.target.value])
+            if (event.target.value === "Wereldwijd") {
+              setData2(globalData)
+            } else {
+              setData2(allData[event.target.value])
+            }
           }}
           input={<Input id="selecteer tweede land" />}
         >
           <option aria-label="None" value="" />
+          <option value="Wereldwijd">Wereldwijd</option>
           {Object.keys(allData).map(country => (
             <option key={country} value={country}>
               {country}
@@ -79,17 +73,26 @@ const CompareCountries = ({ nederlandData, globalData, allData }) => {
         </Select>
       </div>
 
-      {select1 === "" || select2 === "" ? (
+      {select1 === "" || select2 === "" || select1 === select2 ? (
         <Typography variant="h6" align="center">
-          Selecteer twee opties.
+          Selecteer twee (verschillende) opties.
         </Typography>
       ) : (
-        <CompareLineChart
-          data1={data1}
-          label1={select1}
-          data2={data2}
-          label2={select2}
-        />
+        <>
+          <CompareDataTable
+            data1={data1[data1.length - 1]}
+            label1={select1}
+            data2={data2[data2.length - 1]}
+            label2={select2}
+          />
+          <Spacer />
+          <CompareLineChart
+            data1={data1}
+            label1={select1}
+            data2={data2}
+            label2={select2}
+          />
+        </>
       )}
     </>
   )

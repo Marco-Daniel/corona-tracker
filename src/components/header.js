@@ -9,6 +9,8 @@ import { makeStyles } from "@material-ui/core/styles"
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
+    backgroundColor: theme.palette.primary.dark,
+    zIndex: theme.zIndex.appBar + 1,
   },
   title: {
     flexGrow: 1,
@@ -20,15 +22,13 @@ const Header = ({ siteTitle }) => {
   const classes = useStyles()
 
   return (
-    <header className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            {siteTitle}
-          </Typography>
-        </Toolbar>
-      </AppBar>
-    </header>
+    <AppBar position="sticky" className={classes.root}>
+      <Toolbar>
+        <Typography variant="h6" className={classes.title}>
+          {siteTitle}
+        </Typography>
+      </Toolbar>
+    </AppBar>
   )
 }
 

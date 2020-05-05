@@ -3,6 +3,8 @@ import { makeStyles } from "@material-ui/core/styles"
 import Card from "@material-ui/core/Card"
 import CardContent from "@material-ui/core/CardContent"
 import Typography from "@material-ui/core/Typography"
+import AppBar from "@material-ui/core/AppBar"
+import CompareDataTable from "./compareDataTable"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -11,11 +13,12 @@ const useStyles = makeStyles(theme => ({
   title: {
     fontSize: 14,
     textAlign: "right",
-    marginBottom: theme.spacing(2),
+    color: theme.palette.primary.contrastText,
+    margin: theme.spacing(1.5),
   },
-  dataSection: {
-    display: "flex",
-    justifyContent: "space-around",
+  table: {
+    maxWidth: 500,
+    margin: `${theme.spacing(1)}px auto`,
   },
 }))
 
@@ -28,7 +31,7 @@ const LatestData = ({ nederland, global }) => {
 
   return (
     <Card className={classes.root}>
-      <CardContent>
+      <AppBar position="static">
         <Typography
           className={classes.title}
           color="textSecondary"
@@ -36,40 +39,14 @@ const LatestData = ({ nederland, global }) => {
         >
           {`Laatste update: ${reverseDateString(nederland.date)}`}
         </Typography>
-        <section className={classes.dataSection}>
-          <Typography variant="body2" component="span">
-            {`Nederland: `}
-          </Typography>
-          <Typography variant="body2" component="span">
-            {`Bevestigd: ${nederland.confirmed}`}
-          </Typography>
-          <Typography variant="body2" component="span">
-            {`Hersteld: ${nederland.recovered}`}
-          </Typography>
-          <Typography variant="body2" component="span">
-            {`Overleden: ${nederland.deaths} (${(
-              (100 * nederland.deaths) /
-              nederland.confirmed
-            ).toFixed(2)}%)`}
-          </Typography>
-        </section>
-        <section className={classes.dataSection}>
-          <Typography variant="body2" component="span">
-            {`Wereldwijd: `}
-          </Typography>
-          <Typography variant="body2" component="span">
-            {`Bevestigd: ${global.confirmed}`}
-          </Typography>
-          <Typography variant="body2" component="span">
-            {`Hersteld: ${global.recovered}`}
-          </Typography>
-          <Typography variant="body2" component="span">
-            {`Overleden: ${global.deaths} (${(
-              (100 * global.deaths) /
-              global.confirmed
-            ).toFixed(2)}%)`}
-          </Typography>
-        </section>
+      </AppBar>
+      <CardContent>
+        <CompareDataTable
+          data1={nederland}
+          label1="Nederland"
+          data2={global}
+          label2="Wereldwijd"
+        />
       </CardContent>
     </Card>
   )
