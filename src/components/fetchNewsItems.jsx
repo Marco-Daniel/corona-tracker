@@ -35,7 +35,6 @@ const FetchNewsItems = () => {
       )
 
       const json = await data.json()
-      console.log(json)
       setData(json)
     }
 
