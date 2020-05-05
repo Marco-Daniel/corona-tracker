@@ -48,9 +48,17 @@ const InfoButton = () => {
           rel="noreferrer noopener"
           target="_blank"
         >
-          Bekijk broncode
+          Broncode
         </MenuItem>
-        <MenuItem onClick={handleClose}>Over deze app</MenuItem>
+        <MenuItem
+          onClick={handleClose}
+          component="a"
+          href="https://github.com/pomber/covid19"
+          rel="noreferrer noopener"
+          target="_blank"
+        >
+          Databron
+        </MenuItem>
         <MenuItem
           onClick={handleClose}
           component="a"
