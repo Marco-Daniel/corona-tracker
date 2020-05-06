@@ -2,8 +2,8 @@ require("dotenv").config()
 
 module.exports = {
   siteMetadata: {
-    title: `Corona Tracker`,
-    description: `Track Corona`,
+    title: `De laatste informatie over Corona`,
+    description: `De laatste informatie van  het Center for Systems Science and Engineering (CSSE) at Johns Hopkins University en RTL nieuws`,
     author: `M. D. Leguijt`,
     newsAPIKey: process.env.NEWS_API_KEY,
   },
