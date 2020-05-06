@@ -53,6 +53,7 @@ const DataGraph = ({ nederlandData, globalData, allData }) => {
           value={value}
           onChange={handleChange}
           aria-label="Display covid-19 data"
+          centered
         >
           <Tab label="Nederland" {...a11yProps(0)} />
           <Tab label="Wereldwijd" {...a11yProps(1)} />
