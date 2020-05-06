@@ -26,15 +26,15 @@ const Layout = ({ children }) => {
     <>
       <Header siteTitle={data.site.siteMetadata.title} />
       <div className={classes.offset} />
-      <div
+      <main
         style={{
           margin: `0 auto`,
           maxWidth: chartWidth,
           padding: `0 1.0875rem 1.45rem`,
         }}
       >
-        <main>{children}</main>
-      </div>
+        {children}
+      </main>
     </>
   )
 }
