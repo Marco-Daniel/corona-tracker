@@ -12,6 +12,11 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 500,
     margin: `${theme.spacing(1)}px auto`,
   },
+  row: {
+    "&:nth-of-type(odd)": {
+      backgroundColor: theme.palette.action.hover,
+    },
+  },
 }))
 
 const CompareDataTable = ({ dataSets }) => {
@@ -29,7 +34,7 @@ const CompareDataTable = ({ dataSets }) => {
         </TableHead>
         <TableBody>
           {dataSets.map(set => (
-            <TableRow>
+            <TableRow className={classes.row}>
               <TableCell
                 component="th"
                 scope="row"
