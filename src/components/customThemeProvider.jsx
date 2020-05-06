@@ -12,6 +12,12 @@ const CustomThemeProvider = ({ children }) => {
   const theme = createMuiTheme({
     palette: {
       type: useDarkMode ? "dark" : "light",
+      primary: {
+        main: "#69469B",
+      },
+      secondary: {
+        main: "#cf8fd2",
+      },
     },
     mixins: {
       toolbar: {
