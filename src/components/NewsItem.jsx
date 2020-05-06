@@ -10,9 +10,12 @@ const useStyles = makeStyles(theme => ({
     color:
       theme.palette.type === "light"
         ? theme.palette.primary.dark
-        : theme.palette.primary.light,
+        : theme.palette.secondary.main,
     "&:hover": {
-      color: theme.palette.secondary.main,
+      color:
+        theme.palette.type === "light"
+          ? theme.palette.secondary.dark
+          : theme.palette.primary.light,
     },
     maxWidth: 800,
   },
