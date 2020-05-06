@@ -2,6 +2,9 @@ import React from "react"
 import ListItem from "@material-ui/core/ListItem"
 import Typography from "@material-ui/core/Typography"
 import { makeStyles } from "@material-ui/core/styles"
+import reverseDateString from "../globals/reverseDateString"
+
+const formatDate = date => reverseDateString(date.split("T")[0])
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -34,10 +37,15 @@ const useStyles = makeStyles(theme => ({
   summary: {
     color: theme.palette.text.primary,
   },
+  publishedAt: {
+    color: theme.palette.text.secondary,
+    marginTop: theme.spacing(1),
+  },
 }))
 
 const DisplayNewsItems = ({ item }) => {
   const classes = useStyles()
+  const publishedDate = formatDate(item.publishedAt)
 
   return (
     <ListItem
@@ -55,6 +63,9 @@ const DisplayNewsItems = ({ item }) => {
         </Typography>
         <Typography variant="body2" className={classes.summary}>
           {item.description}
+        </Typography>
+        <Typography variant="caption" className={classes.publishedAt}>
+          {`Gepubliceerd op: ${publishedDate}`}
         </Typography>
       </section>
     </ListItem>
