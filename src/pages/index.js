@@ -21,15 +21,24 @@ const useStyles = makeStyles(theme => ({
     height: "95vh",
     padding: `${theme.spacing(4)}px`,
     display: "flex",
+    flexDirection: "column",
     alignItems: "flex-start",
     justifyContent: "center",
+  },
+  poweredBy: {
+    padding: theme.spacing(4),
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+  },
+  link: {
+    color: theme.palette.secondary.main,
   },
 }))
 
 const IndexPage = () => {
   const [data, setData] = useState([])
   const classes = useStyles()
-  const theme = useTheme()
 
   useEffect(() => {
     // useEffect can't be a async function of itself
@@ -97,6 +106,12 @@ const IndexPage = () => {
         ) : (
           <DataDisplay data={data} />
         )}
+        <div className={classes.poweredBy}>
+          Powered by &nbsp;
+          <a href="https://www.gatsbyjs.org/" className={classes.link}>
+            Gatsby
+          </a>
+        </div>
       </div>
     </Layout>
   )
