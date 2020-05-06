@@ -90,6 +90,8 @@ const IndexPage = () => {
 
   return (
     <Layout>
+      <SEO title="Corona Tracker" />
+
       <Particles
         className={classes.particles}
         params={{
@@ -126,7 +128,7 @@ const IndexPage = () => {
           },
         }}
       />
-      <SEO title="Corona Tracker" />
+
       {isPortrait && smScreen ? (
         <Alert severity="info" className={classes.alert}>
           Deze app werkt alleen in landscape-modus.

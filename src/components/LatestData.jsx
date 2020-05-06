@@ -1,10 +1,15 @@
-import React from "react"
+import React, { useState } from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import Card from "@material-ui/core/Card"
 import CardContent from "@material-ui/core/CardContent"
 import Typography from "@material-ui/core/Typography"
 import AppBar from "@material-ui/core/AppBar"
-import CompareDataTable from "./compareDataTable"
+import IconButton from "@material-ui/core/IconButton"
+import Collapse from "@material-ui/core/Collapse"
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
+import clsx from "clsx"
+// import CompareDataTable from "./compareDataTable"
+import CompareDataTable from "./compare/compareDataTable"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -20,6 +25,20 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 500,
     margin: `${theme.spacing(1)}px auto`,
   },
+  expand: {
+    position: "absolute",
+    top: theme.spacing(1),
+    left: theme.spacing(1),
+    color: theme.palette.primary.contrastText,
+    transform: "rotate(0deg)",
+    marginLeft: "auto",
+    transition: theme.transitions.create("transform", {
+      duration: theme.transitions.duration.shortest,
+    }),
+  },
+  expandOpen: {
+    transform: "rotate(180deg)",
+  },
 }))
 
 function reverseDateString(str) {
@@ -28,22 +47,40 @@ function reverseDateString(str) {
 
 const LatestData = ({ nederland, global }) => {
   const classes = useStyles()
+  const [expanded, setExpanded] = useState(true)
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded)
+  }
 
   return (
     <Card className={classes.root}>
       <AppBar position="static">
+        <IconButton
+          className={clsx(classes.expand, {
+            [classes.expandOpen]: expanded,
+          })}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="verberg"
+          size="small"
+        >
+          <ExpandMoreIcon />
+        </IconButton>
         <Typography className={classes.title} gutterBottom>
           {`Laatste update: ${reverseDateString(nederland.date)}`}
         </Typography>
       </AppBar>
-      <CardContent>
-        <CompareDataTable
-          data1={nederland}
-          label1="Nederland"
-          data2={global}
-          label2="Wereldwijd"
-        />
-      </CardContent>
+      <Collapse in={expanded} unmountOnExit>
+        <CardContent>
+          <CompareDataTable
+            dataSets={[
+              { data: global, label: "Wereldwijd" },
+              { data: nederland, label: "Nederland" },
+            ]}
+          />
+        </CardContent>
+      </Collapse>
     </Card>
   )
 }

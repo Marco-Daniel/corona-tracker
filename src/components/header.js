@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.primary.dark,
     zIndex: theme.zIndex.appBar + 1,
   },
-  toolbar: {
+  buttonContainer: {
     display: "flex",
     justifyContent: "space-between",
     width: "100%",
@@ -27,6 +27,9 @@ const useStyles = makeStyles(theme => ({
     transform: "translateX(-50%) translateY(-50%)",
   },
   offset: theme.mixins.toolbar,
+  toolbar: {
+    paddingRight: theme.spacing(1),
+  },
 }))
 
 const Header = ({ siteTitle }) => {
@@ -37,11 +40,11 @@ const Header = ({ siteTitle }) => {
   return (
     <>
       <AppBar position="fixed" className={classes.root}>
-        <Toolbar>
-          <Typography variant="h6" className={classes.title}>
+        <Toolbar className={classes.toolbar}>
+          <Typography variant="h6" component="h1" className={classes.title}>
             {smScreen ? "Covid-19" : siteTitle}
           </Typography>
-          <div className={classes.toolbar}>
+          <div className={classes.buttonContainer}>
             <ToggleModeSwitch />
             <InfoButton />
           </div>

@@ -4,7 +4,7 @@ import CompareLineChart from "./compareLineChart"
 import Input from "@material-ui/core/Input"
 import Select from "@material-ui/core/Select"
 import { useTheme } from "@material-ui/core/styles"
-import CompareDataTable from "./compareDataTable"
+import CompareDataTable from "./compare/compareDataTable"
 
 const CompareCountries = ({ nederlandData, globalData, allData }) => {
   const [data1, setData1] = useState(globalData)
@@ -83,10 +83,10 @@ const CompareCountries = ({ nederlandData, globalData, allData }) => {
       ) : (
         <>
           <CompareDataTable
-            data1={data1[data1.length - 1]}
-            label1={select1}
-            data2={data2[data2.length - 1]}
-            label2={select2}
+            dataSets={[
+              { data: data1[data1.length - 1], label: select1 },
+              { data: data2[data2.length - 1], label: select2 },
+            ]}
           />
           <Spacer />
           <CompareLineChart
