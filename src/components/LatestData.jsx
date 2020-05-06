@@ -8,16 +8,27 @@ import IconButton from "@material-ui/core/IconButton"
 import Collapse from "@material-ui/core/Collapse"
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
 import clsx from "clsx"
-// import CompareDataTable from "./compareDataTable"
 import CompareDataTable from "./compare/compareDataTable"
+import reverseDateString from "../globals/reverseDateString"
 
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
+    transition: theme.transitions.create("height", {
+      duration: theme.transitions.duration.standard,
+    }),
+  },
+  fullHeight: {
+    height: "100%",
+  },
+  header: {
+    ...theme.mixins.toolbar,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "flex-end",
   },
   title: {
     fontSize: 14,
-    textAlign: "right",
     color: theme.palette.primary.contrastText,
     margin: theme.spacing(1.5),
   },
@@ -27,7 +38,7 @@ const useStyles = makeStyles(theme => ({
   },
   expand: {
     position: "absolute",
-    top: theme.spacing(1),
+    top: theme.spacing(1.5),
     left: theme.spacing(1),
     color: theme.palette.primary.contrastText,
     transform: "rotate(0deg)",
@@ -41,21 +52,32 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function reverseDateString(str) {
-  return str.split("-").reverse().join("-")
-}
-
-const LatestData = ({ nederland, global }) => {
+const LatestData = ({ globalData, dataByCountry }) => {
   const classes = useStyles()
   const [expanded, setExpanded] = useState(true)
+
+  const latestGlobalData = globalData[globalData.length - 1]
+  const latestNederlandData =
+    dataByCountry.Netherlands[dataByCountry.Netherlands.length - 1]
+  const latestBelgiumData =
+    dataByCountry.Belgium[dataByCountry.Belgium.length - 1]
+  const latestGermanyData =
+    dataByCountry.Germany[dataByCountry.Germany.length - 1]
+  const latestSpainData = dataByCountry.Spain[dataByCountry.Spain.length - 1]
+  const latestItalyData = dataByCountry.Italy[dataByCountry.Italy.length - 1]
+  const latestFranceData = dataByCountry.France[dataByCountry.France.length - 1]
+  const latestRussiaData = dataByCountry.Russia[dataByCountry.Russia.length - 1]
+  const latestUSData = dataByCountry.US[dataByCountry.US.length - 1]
+  const latestUKData =
+    dataByCountry["United Kingdom"][dataByCountry["United Kingdom"].length - 1]
 
   const handleExpandClick = () => {
     setExpanded(!expanded)
   }
 
   return (
-    <Card className={classes.root}>
-      <AppBar position="static">
+    <Card className={clsx(classes.root, { [classes.fullHeight]: expanded })}>
+      <AppBar position="static" className={classes.header}>
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
@@ -68,15 +90,23 @@ const LatestData = ({ nederland, global }) => {
           <ExpandMoreIcon />
         </IconButton>
         <Typography className={classes.title} gutterBottom>
-          {`Laatste update: ${reverseDateString(nederland.date)}`}
+          {`Laatste update: ${reverseDateString(latestGlobalData.date)}`}
         </Typography>
       </AppBar>
       <Collapse in={expanded} unmountOnExit>
         <CardContent>
           <CompareDataTable
             dataSets={[
-              { data: global, label: "Wereldwijd" },
-              { data: nederland, label: "Nederland" },
+              { data: latestGlobalData, label: "Wereldwijd" },
+              { data: latestNederlandData, label: "Nederland" },
+              { data: latestBelgiumData, label: "België" },
+              { data: latestGermanyData, label: "Duitsland" },
+              { data: latestFranceData, label: "Frankrijk" },
+              { data: latestUKData, label: "Engeland" },
+              { data: latestItalyData, label: "Italië" },
+              { data: latestSpainData, label: "Spanje" },
+              { data: latestRussiaData, label: "Rusland" },
+              { data: latestUSData, label: "U.S.A." },
             ]}
           />
         </CardContent>
