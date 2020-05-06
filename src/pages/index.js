@@ -38,12 +38,61 @@ const useStyles = makeStyles(theme => ({
   alert: {
     marginTop: theme.spacing(4),
   },
+  error: {
+    padding: theme.spacing(2),
+  },
+  spinner: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translateX(-50%) translateY(-50%)",
+  },
 }))
+
+const CoronaParticles = ({ styling }) => (
+  <Particles
+    className={styling}
+    params={{
+      particles: {
+        number: {
+          value: 15,
+          density: {
+            enable: true,
+            value_area: 500,
+          },
+        },
+        shape: {
+          type: "image",
+          image: { src: "covid-19.png" },
+        },
+        size: {
+          value: 10,
+          random: false,
+        },
+        opacity: {
+          value: 1,
+          random: true,
+        },
+        line_linked: {
+          enable: false,
+        },
+        move: {
+          enable: true,
+          speed: 2.5,
+          random: true,
+          straight: false,
+          bounce: true,
+        },
+      },
+    }}
+  />
+)
 
 const IndexPage = () => {
   const [covidData, setCovidData] = useState([])
   const [wikiData, setWikiData] = useState()
   const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState(false)
   const classes = useStyles()
   const theme = useTheme()
   const isPortrait = useMediaQuery("(orientation: portrait)")
@@ -75,62 +124,50 @@ const IndexPage = () => {
         return await data.json()
       }
 
-      const [covidData, wikiData] = await Promise.all([
-        fetchCovidData(),
-        fetchWikipediaData(),
-      ])
+      try {
+        const [covidData, wikiData] = await Promise.all([
+          fetchCovidData(),
+          fetchWikipediaData(),
+        ])
 
-      setCovidData(covidData)
-      setWikiData(wikiData)
-      setIsLoading(false)
+        setCovidData(covidData)
+        setWikiData(wikiData)
+        setIsLoading(false)
+      } catch (error) {
+        console.log(error)
+        setError(true)
+      }
     }
 
     asyncWork()
   }, [])
 
+  if (error) {
+    return (
+      <Layout>
+        <SEO title="Oeps, er is iets mis gegaan.." />
+        <CoronaParticles styling={classes.particles} />
+        <div className={classes.error}>
+          <Alert severity="error">
+            Helaas, er is iets fout gegaan.
+            <br />
+            Probeer de pagina te herladen, als het probleem blijft neem dan
+            contact met op de ontwikkelaar van deze op&nbsp;
+            <a href="https://mddd.nl" rel="noreferrer noopener" target="_blank">
+              www.mddd.nl
+            </a>
+          </Alert>
+        </div>
+      </Layout>
+    )
+  }
+
   return (
     <Layout>
       <SEO title="Corona Tracker" />
-
-      <Particles
-        className={classes.particles}
-        params={{
-          particles: {
-            number: {
-              value: 15,
-              density: {
-                enable: true,
-                value_area: 500,
-              },
-            },
-            shape: {
-              type: "image",
-              image: { src: "covid-19.png" },
-            },
-            size: {
-              value: 10,
-              random: false,
-            },
-            opacity: {
-              value: 1,
-              random: true,
-            },
-            line_linked: {
-              enable: false,
-            },
-            move: {
-              enable: true,
-              speed: 2.5,
-              random: true,
-              straight: false,
-              bounce: true,
-            },
-          },
-        }}
-      />
-
+      <CoronaParticles styling={classes.particles} />
       {isPortrait && smScreen ? (
-        <Alert severity="info" className={classes.alert}>
+        <Alert severity="info" className={classes.error}>
           Deze app werkt alleen in landscape-modus.
           <br />
           Draai uw scherm om over te gaan naar landscape-modus.
@@ -138,7 +175,9 @@ const IndexPage = () => {
       ) : (
         <div className={classes.body}>
           {isLoading ? (
-            <CircularProgress color="secondary" />
+            <div className={classes.spinner}>
+              <CircularProgress color="secondary" />
+            </div>
           ) : (
             <DataDisplay data={covidData} wiki={wikiData} />
           )}
