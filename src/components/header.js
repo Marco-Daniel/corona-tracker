@@ -1,10 +1,10 @@
 import React from "react"
 import PropTypes from "prop-types"
-
+import useMediaQuery from "@material-ui/core/useMediaQuery"
 import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
 import Typography from "@material-ui/core/Typography"
-import { makeStyles } from "@material-ui/core/styles"
+import { makeStyles, useTheme } from "@material-ui/core/styles"
 
 import InfoButton from "./infoButton"
 import ToggleModeSwitch from "./toggleModeSwitch"
@@ -31,13 +31,15 @@ const useStyles = makeStyles(theme => ({
 
 const Header = ({ siteTitle }) => {
   const classes = useStyles()
+  const theme = useTheme()
+  const smScreen = useMediaQuery(theme.breakpoints.down("xs"))
 
   return (
     <>
       <AppBar position="fixed" className={classes.root}>
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            {siteTitle}
+            {smScreen ? "Covid-19" : siteTitle}
           </Typography>
           <div className={classes.toolbar}>
             <ToggleModeSwitch />

@@ -5,6 +5,7 @@ import Grid from "@material-ui/core/Grid"
 import { makeStyles } from "@material-ui/core/styles"
 
 import createGlobalData from "./createGlobalData"
+import WikipediaData from "./wikipediaData"
 
 const useStyles = makeStyles(theme => ({
   poweredBy: {
@@ -17,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const DataDisplay = ({ data }) => {
+const DataDisplay = ({ data, wiki }) => {
   const nederlandData = data.Netherlands
   const globalData = createGlobalData(data)
   const latestNederlandData = data.Netherlands[data.Netherlands.length - 1]
@@ -28,6 +29,9 @@ const DataDisplay = ({ data }) => {
     <Grid container spacing={4}>
       <Grid item xs={12}>
         <LatestData nederland={latestNederlandData} global={latestGlobalData} />
+      </Grid>
+      <Grid item xs={12}>
+        <WikipediaData data={wiki} />
       </Grid>
       <Grid item xs={12}>
         <DataTabs

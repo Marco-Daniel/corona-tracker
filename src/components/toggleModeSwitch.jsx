@@ -3,11 +3,17 @@ import { Context } from "./contextProvider"
 import Switch from "@material-ui/core/Switch"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
 import useMediaQuery from "@material-ui/core/useMediaQuery"
+import { useTheme } from "@material-ui/core/styles"
 
 const ToggleModeSwitch = () => {
   const [checked, setChecked] = useState(false)
   const { useDarkMode, toggleDarkMode } = useContext(Context)
+  const theme = useTheme()
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)")
+  const smScreen = useMediaQuery(theme.breakpoints.down("xs"))
+
+  const darkStr = smScreen ? "Dark" : "Dark theme"
+  const lightStr = smScreen ? "Light" : "Light theme"
 
   const toggleChecked = () => {
     setChecked(prev => !prev)
@@ -23,7 +29,7 @@ const ToggleModeSwitch = () => {
       control={
         <Switch size="small" checked={checked} onChange={toggleChecked} />
       }
-      label={useDarkMode ? "Dark theme" : "Light theme"}
+      label={useDarkMode ? darkStr : lightStr}
     />
   )
 }

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react"
 import CircularProgress from "@material-ui/core/CircularProgress"
-import { makeStyles } from "@material-ui/core/styles"
+import { makeStyles, useTheme } from "@material-ui/core/styles"
+import useMediaQuery from "@material-ui/core/useMediaQuery"
+import Alert from "@material-ui/lab/Alert"
 import Particles from "react-particles-js"
 
 import Layout from "../components/layout"
@@ -33,26 +35,54 @@ const useStyles = makeStyles(theme => ({
   link: {
     color: theme.palette.secondary.main,
   },
+  alert: {
+    marginTop: theme.spacing(4),
+  },
 }))
 
 const IndexPage = () => {
-  const [data, setData] = useState([])
+  const [covidData, setCovidData] = useState([])
+  const [wikiData, setWikiData] = useState()
+  const [isLoading, setIsLoading] = useState(true)
   const classes = useStyles()
+  const theme = useTheme()
+  const isPortrait = useMediaQuery("(orientation: portrait)")
+  const smScreen = useMediaQuery(theme.breakpoints.down("xs"))
 
   useEffect(() => {
     // useEffect can't be a async function of itself
     // so to do async work create a function inside of useEffect
     const asyncWork = async () => {
-      const data = await fetch(
-        "https://pomber.github.io/covid19/timeseries.json",
-        {
-          method: "GET",
-          redirect: "follow",
-        }
-      )
+      const fetchCovidData = async () => {
+        const data = await fetch(
+          "https://pomber.github.io/covid19/timeseries.json",
+          {
+            method: "GET",
+            redirect: "follow",
+          }
+        )
+        return await data.json()
+      }
 
-      const json = await data.json()
-      setData(json)
+      const fetchWikipediaData = async () => {
+        const data = await fetch(
+          "http://nl.wikipedia.org/w/api.php?action=query&prop=extracts%7Cdescription&format=json&origin=*&exintro=&titles=Coronapandemie",
+          {
+            method: "GET",
+          }
+        )
+
+        return await data.json()
+      }
+
+      const [covidData, wikiData] = await Promise.all([
+        fetchCovidData(),
+        fetchWikipediaData(),
+      ])
+
+      setCovidData(covidData)
+      setWikiData(wikiData)
+      setIsLoading(false)
     }
 
     asyncWork()
@@ -97,13 +127,21 @@ const IndexPage = () => {
         }}
       />
       <SEO title="Corona Tracker" />
-      <div className={classes.body}>
-        {data.length === 0 ? (
-          <CircularProgress color="secondary" />
-        ) : (
-          <DataDisplay data={data} />
-        )}
-      </div>
+      {isPortrait && smScreen ? (
+        <Alert severity="info" className={classes.alert}>
+          Deze app werkt alleen in landscape-modus.
+          <br />
+          Draai uw scherm om over te gaan naar landscape-modus.
+        </Alert>
+      ) : (
+        <div className={classes.body}>
+          {isLoading ? (
+            <CircularProgress color="secondary" />
+          ) : (
+            <DataDisplay data={covidData} wiki={wikiData} />
+          )}
+        </div>
+      )}
     </Layout>
   )
 }
