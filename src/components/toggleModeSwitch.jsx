@@ -17,7 +17,7 @@ const ToggleModeSwitch = () => {
       control={
         <Switch size="small" checked={checked} onChange={toggleChecked} />
       }
-      label={useDarkMode ? "Dark mode" : "Light mode"}
+      label={useDarkMode ? "Dark theme" : "Light theme"}
     />
   )
 }
