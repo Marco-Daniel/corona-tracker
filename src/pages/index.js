@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import CircularProgress from "@material-ui/core/CircularProgress"
-import { useTheme, makeStyles } from "@material-ui/core/styles"
+import { makeStyles } from "@material-ui/core/styles"
 import Particles from "react-particles-js"
 
 import Layout from "../components/layout"
@@ -21,7 +21,6 @@ const useStyles = makeStyles(theme => ({
     height: "95vh",
     padding: `${theme.spacing(4)}px`,
     display: "flex",
-    flexDirection: "column",
     alignItems: "flex-start",
     justifyContent: "center",
   },
@@ -44,8 +43,6 @@ const IndexPage = () => {
     // useEffect can't be a async function of itself
     // so to do async work create a function inside of useEffect
     const asyncWork = async () => {
-      // https://api.apify.com/v2/datasets/jr5ogVGnyfMZJwpnB/items?format=json&clean=1
-
       const data = await fetch(
         "https://pomber.github.io/covid19/timeseries.json",
         {
@@ -106,12 +103,6 @@ const IndexPage = () => {
         ) : (
           <DataDisplay data={data} />
         )}
-        <div className={classes.poweredBy}>
-          Powered by &nbsp;
-          <a href="https://www.gatsbyjs.org/" className={classes.link}>
-            Gatsby
-          </a>
-        </div>
       </div>
     </Layout>
   )
