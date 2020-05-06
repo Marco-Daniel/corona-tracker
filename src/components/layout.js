@@ -1,14 +1,9 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
-import { makeStyles } from "@material-ui/core/styles"
 
 import Header from "./header"
 import chartWidth from "../globals/chartWidth"
-
-const useStyles = makeStyles(theme => ({
-  offset: theme.mixins.toolbar,
-}))
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -20,12 +15,10 @@ const Layout = ({ children }) => {
       }
     }
   `)
-  const classes = useStyles()
 
   return (
     <>
       <Header siteTitle={data.site.siteMetadata.title} />
-      <div className={classes.offset} />
       <main
         style={{
           margin: `0 auto`,
