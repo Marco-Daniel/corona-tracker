@@ -14,9 +14,18 @@ import capitalizeFirstLetter from "../globals/capitalizeFirstLetter"
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
+    transition: theme.transitions.create("height", {
+      duration: theme.transitions.duration.standard,
+    }),
+  },
+  fullHeight: {
+    height: "100%",
   },
   header: {
-    padding: theme.spacing(1),
+    ...theme.mixins.toolbar,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
   wikiData: {
     margin: "0 auto",
@@ -27,7 +36,7 @@ const useStyles = makeStyles(theme => ({
   },
   expand: {
     position: "absolute",
-    top: theme.spacing(1),
+    top: theme.spacing(1.5),
     left: theme.spacing(1),
     color: theme.palette.primary.contrastText,
     transform: "rotate(0deg)",
@@ -55,7 +64,7 @@ const WikipediaData = ({ data }) => {
   }
 
   return (
-    <Card className={classes.root}>
+    <Card className={clsx(classes.root, { [classes.fullHeight]: expanded })}>
       <AppBar position="static" className={classes.header}>
         <IconButton
           className={clsx(classes.expand, {
@@ -69,7 +78,7 @@ const WikipediaData = ({ data }) => {
           <ExpandMoreIcon />
         </IconButton>
         <Typography variant="h6" align="center">
-          {`Wikipedia: ${capitalizeFirstLetter(wikiData.description)}`}
+          {capitalizeFirstLetter(wikiData.description)}
         </Typography>
       </AppBar>
       <Collapse in={expanded} unmountOnExit>
