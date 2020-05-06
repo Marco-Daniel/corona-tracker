@@ -15,6 +15,11 @@ const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
   },
+  header: {
+    ...theme.mixins.toolbar,
+    display: "flex",
+    justifyContent: "flex-end",
+  },
 }))
 
 const a11yProps = index => {
@@ -48,7 +53,7 @@ const DataGraph = ({ nederlandData, globalData, allData }) => {
 
   return (
     <Card className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" className={classes.header}>
         <Tabs
           value={value}
           onChange={handleChange}
