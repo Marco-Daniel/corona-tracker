@@ -41,7 +41,13 @@ const FetchNewsItems = () => {
     asyncWork()
   }, [])
 
-  return data ? <DisplayNewsItems data={data.articles} /> : <CircularProgress />
+  return data ? (
+    <DisplayNewsItems data={data.articles} />
+  ) : (
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <CircularProgress color="secondary" />
+    </div>
+  )
 }
 
 export default FetchNewsItems

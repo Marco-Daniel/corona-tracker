@@ -92,7 +92,11 @@ const IndexPage = () => {
       />
       <SEO title="Corona Tracker" />
       <div className={classes.body}>
-        {data.length === 0 ? <CircularProgress /> : <DataDisplay data={data} />}
+        {data.length === 0 ? (
+          <CircularProgress color="secondary" />
+        ) : (
+          <DataDisplay data={data} />
+        )}
       </div>
     </Layout>
   )
