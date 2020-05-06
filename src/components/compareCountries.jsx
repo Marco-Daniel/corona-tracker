@@ -40,6 +40,8 @@ const CompareCountries = ({ nederlandData, globalData, allData }) => {
             }
           }}
           input={<Input id="selecteer eerste land" />}
+          style={{ margin: theme.spacing(1) }}
+          color="secondary"
         >
           <option aria-label="None" value="" />
           <option value="Wereldwijd">Wereldwijd</option>
@@ -49,7 +51,6 @@ const CompareCountries = ({ nederlandData, globalData, allData }) => {
             </option>
           ))}
         </Select>
-        {` `}
         <Select
           native
           defaultValue=""
@@ -62,6 +63,8 @@ const CompareCountries = ({ nederlandData, globalData, allData }) => {
             }
           }}
           input={<Input id="selecteer tweede land" />}
+          style={{ margin: theme.spacing(1) }}
+          color="secondary"
         >
           <option aria-label="None" value="" />
           <option value="Wereldwijd">Wereldwijd</option>

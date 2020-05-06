@@ -32,11 +32,7 @@ const LatestData = ({ nederland, global }) => {
   return (
     <Card className={classes.root}>
       <AppBar position="static">
-        <Typography
-          className={classes.title}
-          color="textSecondary"
-          gutterBottom
-        >
+        <Typography className={classes.title} gutterBottom>
           {`Laatste update: ${reverseDateString(nederland.date)}`}
         </Typography>
       </AppBar>

@@ -8,6 +8,7 @@ import { makeStyles } from "@material-ui/core/styles"
 const useStyles = makeStyles(theme => ({
   button: {
     color: theme.palette.primary.contrastText,
+    paddingRight: 0,
   },
 }))
 
