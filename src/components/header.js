@@ -17,25 +17,36 @@ const useStyles = makeStyles(theme => ({
   },
   toolbar: {
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "space-between",
+    width: "100%",
   },
+  title: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translateX(-50%) translateY(-50%)",
+  },
+  offset: theme.mixins.toolbar,
 }))
 
 const Header = ({ siteTitle }) => {
   const classes = useStyles()
 
   return (
-    <AppBar position="fixed" className={classes.root}>
-      <Toolbar className={classes.toolbar}>
-        <span style={{ marginRight: "auto" }}>
-          <ToggleModeSwitch />
-        </span>
-        <Typography variant="h6">{siteTitle}</Typography>
-        <span style={{ marginLeft: "auto" }}>
-          <InfoButton />
-        </span>
-      </Toolbar>
-    </AppBar>
+    <>
+      <AppBar position="fixed" className={classes.root}>
+        <Toolbar>
+          <Typography variant="h6" className={classes.title}>
+            {siteTitle}
+          </Typography>
+          <div className={classes.toolbar}>
+            <ToggleModeSwitch />
+            <InfoButton />
+          </div>
+        </Toolbar>
+      </AppBar>
+      <div className={classes.offset} />
+    </>
   )
 }
 
