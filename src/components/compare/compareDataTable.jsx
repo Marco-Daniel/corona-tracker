@@ -33,8 +33,8 @@ const CompareDataTable = ({ dataSets }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {dataSets.map(set => (
-            <TableRow className={classes.row}>
+          {dataSets.map((set, i) => (
+            <TableRow key={i} className={classes.row}>
               <TableCell
                 component="th"
                 scope="row"
