@@ -7,6 +7,7 @@ import withFadeInAnimation from "./hoc/withFadeInAnimation"
 
 import createGlobalData from "./createGlobalData"
 import WikipediaData from "./wikipediaData"
+import ExtendedWikipediaData from "./extendedWikipediaData"
 
 const useStyles = makeStyles(theme => ({
   poweredBy: {
@@ -19,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const DataDisplay = ({ data, wiki }) => {
+const DataDisplay = ({ data, wiki, extendedWiki }) => {
   const nederlandData = data.Netherlands
   const globalData = createGlobalData(data)
   const classes = useStyles()
@@ -31,6 +32,9 @@ const DataDisplay = ({ data, wiki }) => {
       </Grid>
       <Grid item xs={12} lg={7}>
         <WikipediaData data={wiki} />
+      </Grid>
+      <Grid item xs={12}>
+        <ExtendedWikipediaData data={extendedWiki} />
       </Grid>
       <Grid item xs={12}>
         <DataTabs

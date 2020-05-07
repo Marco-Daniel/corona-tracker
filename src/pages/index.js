@@ -91,6 +91,7 @@ const CoronaParticles = ({ styling }) => (
 const IndexPage = () => {
   const [covidData, setCovidData] = useState([])
   const [wikiData, setWikiData] = useState()
+  const [extendedWikiData, setExtendedWikiData] = useState()
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(false)
   const classes = useStyles()
@@ -124,14 +125,27 @@ const IndexPage = () => {
         return await data.json()
       }
 
+      const fetchExtendedWikipediaData = async () => {
+        const data = await fetch(
+          "http://nl.wikipedia.org/w/api.php?action=query&prop=extracts%7Cdescription&format=json&origin=*&exintro=&titles=Coronacrisis_in_Nederland",
+          {
+            method: "GET",
+          }
+        )
+
+        return await data.json()
+      }
+
       try {
-        const [covidData, wikiData] = await Promise.all([
+        const [covidData, wikiData, extendedWikiData] = await Promise.all([
           fetchCovidData(),
           fetchWikipediaData(),
+          fetchExtendedWikipediaData(),
         ])
 
         setCovidData(covidData)
         setWikiData(wikiData)
+        setExtendedWikiData(extendedWikiData)
         setIsLoading(false)
       } catch (error) {
         console.log(error)
@@ -179,7 +193,11 @@ const IndexPage = () => {
               <CircularProgress color="secondary" />
             </div>
           ) : (
-            <DataDisplay data={covidData} wiki={wikiData} />
+            <DataDisplay
+              data={covidData}
+              wiki={wikiData}
+              extendedWiki={extendedWikiData}
+            />
           )}
         </div>
       )}
