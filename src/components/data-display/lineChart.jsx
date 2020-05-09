@@ -7,30 +7,8 @@ import Typography from "@material-ui/core/Typography"
 const LineChart = ({ data }) => {
   const canvasRef = useRef()
 
-  console.log(data)
-
   const firstDate = new Date(data[0].data.date)
   const lastDate = new Date(data[data.length - 1].data.date)
-
-  const dataSet = data.reduce((accumulator, country, i) => {
-    accumulator.push(
-      createDataSet(
-        `Bevestigd ${country.label}`,
-        `${i}, 10, 66`,
-        country.data,
-        `confirmed`,
-        false
-      ),
-      createDataSet(
-        `Overleden ${country.label}`,
-        `250, ${i}, 0`,
-        country.data,
-        `deaths`,
-        false
-      )
-    )
-    return accumulator
-  }, [])
 
   useEffect(() => {
     new Chart(canvasRef.current, {
@@ -66,7 +44,26 @@ const LineChart = ({ data }) => {
         },
       },
       data: {
-        datasets: dataSet,
+        datasets: data.reduce((accumulator, country, i) => {
+          accumulator.push(
+            createDataSet(
+              `Bevestigd ${country.label}`,
+              `${i}, 10, 66`,
+              country.data,
+              `confirmed`,
+              false
+            ),
+            createDataSet(
+              `Overleden ${country.label}`,
+              `250, ${i}, 0`,
+              country.data,
+              `deaths`,
+              false
+            )
+          )
+
+          return accumulator
+        }, []),
       },
     })
   }, [data])
