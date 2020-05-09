@@ -1,10 +1,11 @@
 import React, { useState } from "react"
 import Typography from "@material-ui/core/Typography"
-import CompareLineChart from "./compareLineChart"
+import CompareLineChart from "./data-display/lineChart"
 import Input from "@material-ui/core/Input"
 import Select from "@material-ui/core/Select"
 import { useTheme } from "@material-ui/core/styles"
 import CompareDataTable from "./compare/compareDataTable"
+import LineChart from "./data-display/lineChart"
 
 const CompareCountries = ({ nederlandData, globalData, allData }) => {
   const [data1, setData1] = useState(globalData)
@@ -89,11 +90,11 @@ const CompareCountries = ({ nederlandData, globalData, allData }) => {
             ]}
           />
           <Spacer />
-          <CompareLineChart
-            data1={data1}
-            label1={select1}
-            data2={data2}
-            label2={select2}
+          <LineChart
+            data={[
+              { data: data1, label: select1 },
+              { data: data2, label: select2 },
+            ]}
           />
         </>
       )}

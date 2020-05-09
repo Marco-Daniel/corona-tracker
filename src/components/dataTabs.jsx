@@ -7,7 +7,7 @@ import AppBar from "@material-ui/core/AppBar"
 import Tabs from "@material-ui/core/Tabs"
 import Tab from "@material-ui/core/Tab"
 import Box from "@material-ui/core/Box"
-import LineChart from "./lineChart"
+import LineChart from "./data-display/lineChart"
 import CompareCountries from "./compareCountries"
 import FetchNewsItems from "./fetchNewsItems"
 
@@ -71,13 +71,13 @@ const DataGraph = ({ nederlandData, globalData, allData }) => {
           <Typography variant="h6" align="center">
             Covid-19 verloop in Nederland
           </Typography>
-          <LineChart data={nederlandData} />
+          <LineChart data={[{ data: nederlandData, label: "Nederland" }]} />
         </TabPanel>
         <TabPanel value={value} index={1}>
           <Typography variant="h6" align="center">
             Covid-19 verloop in wereldwijd
           </Typography>
-          <LineChart data={globalData} />
+          <LineChart data={[{ data: globalData, label: "Wereldwijd" }]} />
         </TabPanel>
         <TabPanel value={value} index={2}>
           <CompareCountries
