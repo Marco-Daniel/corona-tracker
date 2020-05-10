@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const DataDisplay = ({ data, wiki, extendedWiki }) => {
-  const nederlandData = data.Netherlands
+  const nederlandData = data.Nederland
   const globalData = createGlobalData(data)
   const classes = useStyles()
 

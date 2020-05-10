@@ -58,18 +58,26 @@ const LatestData = ({ globalData, dataByCountry }) => {
 
   const latestGlobalData = globalData[globalData.length - 1]
   const latestNederlandData =
-    dataByCountry.Netherlands[dataByCountry.Netherlands.length - 1]
+    dataByCountry.Nederland[dataByCountry.Nederland.length - 1]
   const latestBelgiumData =
-    dataByCountry.Belgium[dataByCountry.Belgium.length - 1]
+    dataByCountry["België"][dataByCountry["België"].length - 1]
   const latestGermanyData =
-    dataByCountry.Germany[dataByCountry.Germany.length - 1]
-  const latestSpainData = dataByCountry.Spain[dataByCountry.Spain.length - 1]
-  const latestItalyData = dataByCountry.Italy[dataByCountry.Italy.length - 1]
-  const latestFranceData = dataByCountry.France[dataByCountry.France.length - 1]
-  const latestRussiaData = dataByCountry.Russia[dataByCountry.Russia.length - 1]
-  const latestUSData = dataByCountry.US[dataByCountry.US.length - 1]
+    dataByCountry.Duitsland[dataByCountry.Duitsland.length - 1]
   const latestUKData =
-    dataByCountry["United Kingdom"][dataByCountry["United Kingdom"].length - 1]
+    dataByCountry["Verenigd Koninkrijk"][
+      dataByCountry["Verenigd Koninkrijk"].length - 1
+    ]
+  const latestSpainData = dataByCountry.Spanje[dataByCountry.Spanje.length - 1]
+  const latestItalyData =
+    dataByCountry["Italië"][dataByCountry["Italië"].length - 1]
+  const latestFranceData =
+    dataByCountry.Frankrijk[dataByCountry.Frankrijk.length - 1]
+  const latestRussiaData =
+    dataByCountry.Rusland[dataByCountry.Rusland.length - 1]
+  const latestUSData =
+    dataByCountry["Verenigde Staten"][
+      dataByCountry["Verenigde Staten"].length - 1
+    ]
 
   const handleExpandClick = () => {
     setExpanded(!expanded)
@@ -101,12 +109,12 @@ const LatestData = ({ globalData, dataByCountry }) => {
               { data: latestNederlandData, label: "Nederland" },
               { data: latestBelgiumData, label: "België" },
               { data: latestGermanyData, label: "Duitsland" },
+              { data: latestUKData, label: "Verenigd Koninkrijk" },
               { data: latestFranceData, label: "Frankrijk" },
-              { data: latestUKData, label: "Engeland" },
               { data: latestItalyData, label: "Italië" },
               { data: latestSpainData, label: "Spanje" },
               { data: latestRussiaData, label: "Rusland" },
-              { data: latestUSData, label: "U.S.A." },
+              { data: latestUSData, label: "Verenigde Staten" },
             ]}
           />
         </CardContent>

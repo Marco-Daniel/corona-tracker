@@ -9,6 +9,8 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import DataDisplay from "../components/dataDisplay"
 
+import translationData from "../../world-countries/data/translations.json"
+
 const useStyles = makeStyles(theme => ({
   particles: {
     position: "fixed",
@@ -88,6 +90,20 @@ const CoronaParticles = ({ styling }) => (
   />
 )
 
+const translateCountryNames = data => {
+  const translations = Object.keys(data).reduce((accumulator, key) => {
+    const foundCountry = translationData.find(obj => obj.english === key)
+
+    if (foundCountry != null) {
+      accumulator[foundCountry.dutch] = data[key]
+    }
+
+    return accumulator
+  }, {})
+
+  return translations
+}
+
 const IndexPage = () => {
   const [covidData, setCovidData] = useState([])
   const [wikiData, setWikiData] = useState()
@@ -143,7 +159,9 @@ const IndexPage = () => {
           fetchExtendedWikipediaData(),
         ])
 
-        setCovidData(covidData)
+        const translatedCovidData = translateCountryNames(covidData)
+
+        setCovidData(translatedCovidData)
         setWikiData(wikiData)
         setExtendedWikiData(extendedWikiData)
         setIsLoading(false)
