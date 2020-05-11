@@ -25,12 +25,26 @@ const useStyles = makeStyles(theme => ({
     top: "50%",
     left: "50%",
     transform: "translateX(-50%) translateY(-50%)",
+    display: "flex",
+    alignItems: "center",
   },
   offset: theme.mixins.toolbar,
   toolbar: {
     paddingRight: theme.spacing(1),
   },
 }))
+
+const Icon = ({ theme }) => (
+  <img
+    src="covid-19.png"
+    alt="logo"
+    style={{
+      width: 20,
+      height: 20,
+      margin: `0 ${theme.spacing(1)}px`,
+    }}
+  />
+)
 
 const Header = ({ siteTitle }) => {
   const classes = useStyles()
@@ -41,9 +55,13 @@ const Header = ({ siteTitle }) => {
     <>
       <AppBar position="fixed" className={classes.root}>
         <Toolbar className={classes.toolbar}>
-          <Typography variant="h6" component="h1" className={classes.title}>
-            {smScreen ? "Covid-19" : siteTitle}
-          </Typography>
+          <div className={classes.title}>
+            <Icon theme={theme} />
+            <Typography variant="h6" component="h1">
+              {smScreen ? "Covid-19" : siteTitle}
+            </Typography>
+            <Icon theme={theme} />
+          </div>
           <div className={classes.buttonContainer}>
             <ToggleModeSwitch />
             <InfoButton />
