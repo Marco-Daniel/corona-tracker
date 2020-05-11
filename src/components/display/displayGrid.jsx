@@ -1,13 +1,12 @@
 import React from "react"
-import LatestData from "../latestData"
-import DataTabs from "../dataTabs"
+import LatestData from "../compare/LatestData"
+import DataTabs from "./dataTabs"
 import Grid from "@material-ui/core/Grid"
 import { makeStyles } from "@material-ui/core/styles"
-import withFadeInAnimation from "../hoc/withFadeInAnimation"
 
-import createGlobalData from "../createGlobalData"
-import WikipediaData from "../wikipediaData"
-import ExtendedWikipediaData from "../extendedWikipediaData"
+import createGlobalData from "../../globals/createGlobalData"
+import WikipediaData from "./wikipediaData"
+import ExtendedWikipediaData from "./extendedWikipediaData"
 
 const useStyles = makeStyles(theme => ({
   poweredBy: {
@@ -60,4 +59,4 @@ const DisplayGrid = ({ data, wiki, extendedWiki }) => {
   )
 }
 
-export default withFadeInAnimation(DisplayGrid)
+export default DisplayGrid

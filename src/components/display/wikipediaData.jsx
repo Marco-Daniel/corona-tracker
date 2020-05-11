@@ -9,7 +9,7 @@ import Collapse from "@material-ui/core/Collapse"
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
 import clsx from "clsx"
 
-import capitalizeFirstLetter from "../globals/capitalizeFirstLetter"
+import capitalizeFirstLetter from "../../globals/capitalizeFirstLetter"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -50,14 +50,14 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const ExtendedWikipediaData = ({ data }) => {
+const WikipediaData = ({ data }) => {
   const {
     query: {
-      pages: { 5331690: wikiData },
+      pages: { 5312604: wikiData },
     },
   } = data
   const classes = useStyles()
-  const [expanded, setExpanded] = useState(false)
+  const [expanded, setExpanded] = useState(true)
 
   const handleExpandClick = () => {
     setExpanded(!expanded)
@@ -95,4 +95,4 @@ const ExtendedWikipediaData = ({ data }) => {
   )
 }
 
-export default ExtendedWikipediaData
+export default WikipediaData

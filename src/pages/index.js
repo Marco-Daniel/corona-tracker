@@ -5,9 +5,9 @@ import useMediaQuery from "@material-ui/core/useMediaQuery"
 import Alert from "@material-ui/lab/Alert"
 import Particles from "react-particles-js"
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import DataDisplay from "../components/data-display/displayGrid"
+import Layout from "../components/layout/layout"
+import SEO from "../components/layout/seo"
+import DataDisplay from "../components/display/displayGrid"
 import fetchNetworkResource from "../globals/fetchNetworkResource"
 
 import translationData from "../../world-countries/data/translations.json"

@@ -1,11 +1,11 @@
 import React from "react"
-import ContextProvider from "./contextProvider"
-import CustomThemeProvider from "./customThemeProvider"
+import ThemeContextProvider from "./layout/themeContextProvider"
+import CustomThemeProvider from "./layout/customMuiThemeProvider"
 
 const WrapRoot = ({ children }) => (
-  <ContextProvider>
+  <ThemeContextProvider>
     <CustomThemeProvider>{children}</CustomThemeProvider>
-  </ContextProvider>
+  </ThemeContextProvider>
 )
 
 export default WrapRoot

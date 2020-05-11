@@ -1,12 +1,12 @@
 import React, { useContext } from "react"
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles"
 import CssBaseline from "@material-ui/core/CssBaseline"
-import { Context } from "./contextProvider"
+import { ThemeContext } from "./themeContextProvider"
 
 const toolbarHeight = 50
 
 const CustomThemeProvider = ({ children }) => {
-  const { useDarkMode } = useContext(Context)
+  const { useDarkMode } = useContext(ThemeContext)
 
   const defaultTheme = createMuiTheme()
   const theme = createMuiTheme({

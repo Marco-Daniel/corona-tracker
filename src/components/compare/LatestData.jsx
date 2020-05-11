@@ -8,8 +8,8 @@ import IconButton from "@material-ui/core/IconButton"
 import Collapse from "@material-ui/core/Collapse"
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
 import clsx from "clsx"
-import CompareDataTable from "./compare/compareDataTable"
-import reverseDateString from "../globals/reverseDateString"
+import CompareDataTable from "./compareDataTable"
+import reverseDateString from "../../globals/reverseDateString"
 
 const useStyles = makeStyles(theme => ({
   root: {

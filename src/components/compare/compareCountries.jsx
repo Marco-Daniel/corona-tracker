@@ -1,11 +1,10 @@
 import React, { useState } from "react"
 import Typography from "@material-ui/core/Typography"
-import CompareLineChart from "../data-display/lineChart"
 import Input from "@material-ui/core/Input"
 import Select from "@material-ui/core/Select"
 import { useTheme } from "@material-ui/core/styles"
 import CompareDataTable from "./compareDataTable"
-import LineChart from "../data-display/lineChart"
+import LineChart from "./lineChart"
 
 const SelectCountries = ({ data, setSelect, setData, style, inputText }) => (
   <Select

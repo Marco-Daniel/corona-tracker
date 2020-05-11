@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import CircularProgress from "@material-ui/core/CircularProgress"
-import DisplayNewsItems from "./data-display/displayNewsItems"
+import DisplayNewsItems from "./displayNewsItems"
 
-import fetchNetworkResource from "../globals/fetchNetworkResource"
+import fetchNetworkResource from "../../globals/fetchNetworkResource"
 
 const FetchNewsItems = () => {
   const {

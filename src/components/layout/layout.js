@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
-import chartWidth from "../globals/chartWidth"
+import chartWidth from "../../globals/chartWidth"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`

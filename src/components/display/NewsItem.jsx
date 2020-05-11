@@ -2,7 +2,7 @@ import React from "react"
 import ListItem from "@material-ui/core/ListItem"
 import Typography from "@material-ui/core/Typography"
 import { makeStyles } from "@material-ui/core/styles"
-import reverseDateString from "../globals/reverseDateString"
+import reverseDateString from "../../globals/reverseDateString"
 
 const formatDate = date => reverseDateString(date.split("T")[0])
 
