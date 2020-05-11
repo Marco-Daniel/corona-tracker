@@ -7,6 +7,32 @@ import { useTheme } from "@material-ui/core/styles"
 import CompareDataTable from "./compare/compareDataTable"
 import LineChart from "./data-display/lineChart"
 
+const SelectCountries = ({ data, setSelect, setData, style, inputText }) => (
+  <Select
+    native
+    defaultValue=""
+    onChange={({ target: { value } }) => {
+      setSelect(value)
+      if (value === "Wereldwijd") {
+        setData(data.globalData)
+      } else {
+        setData(data.allData[value])
+      }
+    }}
+    input={<Input id={inputText} />}
+    style={style}
+    color="secondary"
+  >
+    <option aria-label="None" value="" />
+    <option value="Wereldwijd">Wereldwijd</option>
+    {Object.keys(data.allData).map(country => (
+      <option key={country} value={country}>
+        {country}
+      </option>
+    ))}
+  </Select>
+)
+
 const CompareCountries = ({ nederlandData, globalData, allData }) => {
   const [data1, setData1] = useState(globalData)
   const [data2, setData2] = useState(nederlandData)
@@ -29,52 +55,20 @@ const CompareCountries = ({ nederlandData, globalData, allData }) => {
           padding: `${theme.spacing(2)}px`,
         }}
       >
-        <Select
-          native
-          defaultValue=""
-          onChange={event => {
-            setSelect1(event.target.value)
-            if (event.target.value === "Wereldwijd") {
-              setData1(globalData)
-            } else {
-              setData1(allData[event.target.value])
-            }
-          }}
-          input={<Input id="selecteer eerste land" />}
+        <SelectCountries
+          data={{ globalData, allData }}
+          setSelect={setSelect1}
+          setData={setData1}
           style={{ margin: theme.spacing(1) }}
-          color="secondary"
-        >
-          <option aria-label="None" value="" />
-          <option value="Wereldwijd">Wereldwijd</option>
-          {Object.keys(allData).map(country => (
-            <option key={country} value={country}>
-              {country}
-            </option>
-          ))}
-        </Select>
-        <Select
-          native
-          defaultValue=""
-          onChange={event => {
-            setSelect2(event.target.value)
-            if (event.target.value === "Wereldwijd") {
-              setData2(globalData)
-            } else {
-              setData2(allData[event.target.value])
-            }
-          }}
-          input={<Input id="selecteer tweede land" />}
+          inputText="selecteer eerste land"
+        />
+        <SelectCountries
+          data={{ globalData, allData }}
+          setSelect={setSelect2}
+          setData={setData2}
           style={{ margin: theme.spacing(1) }}
-          color="secondary"
-        >
-          <option aria-label="None" value="" />
-          <option value="Wereldwijd">Wereldwijd</option>
-          {Object.keys(allData).map(country => (
-            <option key={country} value={country}>
-              {country}
-            </option>
-          ))}
-        </Select>
+          inputText="selecteer tweede land"
+        />
       </div>
 
       {select1 === "" || select2 === "" || select1 === select2 ? (
