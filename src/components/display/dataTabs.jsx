@@ -20,6 +20,9 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     justifyContent: "flex-end",
   },
+  content: {
+    padding: 0,
+  },
 }))
 
 const a11yProps = index => {
@@ -29,7 +32,7 @@ const a11yProps = index => {
   }
 }
 
-const TabPanel = ({ children, value, index, ...other }) => {
+const TabPanel = ({ children, value, index, tabStyle, ...other }) => {
   return (
     <div
       role="tabpanel"
@@ -38,7 +41,11 @@ const TabPanel = ({ children, value, index, ...other }) => {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && <Box p={3}>{children}</Box>}
+      {value === index && (
+        <Box style={{ ...tabStyle }} p={3}>
+          {children}
+        </Box>
+      )}
     </div>
   )
 }
@@ -66,7 +73,7 @@ const DataGraph = ({ nederlandData, globalData, allData }) => {
           <Tab label="Laatste nieuws" {...a11yProps(3)} />
         </Tabs>
       </AppBar>
-      <CardContent>
+      <CardContent className={classes.content}>
         <TabPanel value={value} index={0}>
           <Typography variant="h6" align="center">
             Covid-19 verloop in Nederland
@@ -86,7 +93,7 @@ const DataGraph = ({ nederlandData, globalData, allData }) => {
             allData={allData}
           />
         </TabPanel>
-        <TabPanel value={value} index={3}>
+        <TabPanel value={value} index={3} tabStyle={{ padding: 0 }}>
           <FetchNewsItems />
         </TabPanel>
       </CardContent>
