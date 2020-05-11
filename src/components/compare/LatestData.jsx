@@ -52,36 +52,24 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+const getLatestData = data => data[data.length - 1]
+
 const LatestData = ({ globalData, dataByCountry }) => {
   const classes = useStyles()
   const [expanded, setExpanded] = useState(true)
 
-  const latestGlobalData = globalData[globalData.length - 1]
-  const latestNederlandData =
-    dataByCountry.Nederland[dataByCountry.Nederland.length - 1]
-  const latestBelgiumData =
-    dataByCountry["België"][dataByCountry["België"].length - 1]
-  const latestGermanyData =
-    dataByCountry.Duitsland[dataByCountry.Duitsland.length - 1]
-  const latestUKData =
-    dataByCountry["Verenigd Koninkrijk"][
-      dataByCountry["Verenigd Koninkrijk"].length - 1
-    ]
-  const latestSpainData = dataByCountry.Spanje[dataByCountry.Spanje.length - 1]
-  const latestItalyData =
-    dataByCountry["Italië"][dataByCountry["Italië"].length - 1]
-  const latestFranceData =
-    dataByCountry.Frankrijk[dataByCountry.Frankrijk.length - 1]
-  const latestRussiaData =
-    dataByCountry.Rusland[dataByCountry.Rusland.length - 1]
-  const latestUSData =
-    dataByCountry["Verenigde Staten"][
-      dataByCountry["Verenigde Staten"].length - 1
-    ]
+  const latestGlobalData = getLatestData(globalData)
+  const latestNederlandData = getLatestData(dataByCountry.Nederland)
+  const latestBelgiumData = getLatestData(dataByCountry["België"])
+  const latestGermanyData = getLatestData(dataByCountry.Duitsland)
+  const latestUKData = getLatestData(dataByCountry["Verenigd Koninkrijk"])
+  const latestSpainData = getLatestData(dataByCountry.Spanje)
+  const latestItalyData = getLatestData(dataByCountry["Italië"])
+  const latestFranceData = getLatestData(dataByCountry.Frankrijk)
+  const latestRussiaData = getLatestData(dataByCountry.Rusland)
+  const latestUSData = getLatestData(dataByCountry["Verenigde Staten"])
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded)
-  }
+  const handleExpandClick = () => setExpanded(!expanded)
 
   return (
     <Card className={clsx(classes.root, { [classes.fullHeight]: expanded })}>
