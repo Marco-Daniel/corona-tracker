@@ -8,7 +8,7 @@ import Tabs from "@material-ui/core/Tabs"
 import Tab from "@material-ui/core/Tab"
 import Box from "@material-ui/core/Box"
 import LineChart from "./data-display/lineChart"
-import CompareCountries from "./compareCountries"
+import CompareCountries from "./compare/compareCountries"
 import FetchNewsItems from "./fetchNewsItems"
 
 const useStyles = makeStyles(theme => ({

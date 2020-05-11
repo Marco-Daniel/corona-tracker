@@ -1,5 +1,5 @@
 import React from "react"
-import NewsItem from "./NewsItem"
+import NewsItem from "../NewsItem"
 import List from "@material-ui/core/List"
 import Typography from "@material-ui/core/Typography"
 import { useTheme } from "@material-ui/core/styles"
