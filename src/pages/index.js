@@ -92,8 +92,10 @@ const CoronaParticles = ({ styling }) => (
 
 const translateCountryNames = data => {
   const translations = Object.keys(data).reduce((accumulator, key) => {
+    // search for translation
     const foundCountry = translationData.find(obj => obj.english === key)
 
+    // if there is an translation found, create key with translated name else drop the country from the object
     if (foundCountry != null) {
       accumulator[foundCountry.dutch] = data[key]
     }
