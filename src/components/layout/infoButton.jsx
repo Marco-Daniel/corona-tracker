@@ -9,7 +9,7 @@ import StorageIcon from "@material-ui/icons/Storage"
 import MenuList from "@material-ui/core/MenuList"
 import { makeStyles, useTheme } from "@material-ui/core/styles"
 
-const WhiteMark = props => {
+const MDDDLogo = props => {
   const theme = useTheme()
 
   return (
@@ -62,13 +62,9 @@ const InfoButton = () => {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = useState(null)
 
-  const handleClick = event => {
-    setAnchorEl(event.currentTarget)
-  }
+  const handleClick = event => setAnchorEl(event.currentTarget)
 
-  const handleClose = () => {
-    setAnchorEl(null)
-  }
+  const handleClose = () => setAnchorEl(null)
 
   return (
     <>
@@ -104,7 +100,7 @@ const InfoButton = () => {
           <MenuLink
             onClick={handleClose}
             href="https://www.mddd.nl"
-            icon={<WhiteMark width="30" height="30" />}
+            icon={<MDDDLogo width="30" height="30" />}
             children="www.mddd.nl"
           />
         </MenuList>
