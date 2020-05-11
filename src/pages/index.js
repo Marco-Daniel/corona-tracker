@@ -7,7 +7,7 @@ import Particles from "react-particles-js"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import DataDisplay from "../components/dataDisplay"
+import DisplayGrid from "../components/data-display/displayGrid"
 import fetchNetworkResource from "../globals/fetchNetworkResource"
 
 import translationData from "../../world-countries/data/translations.json"
@@ -192,7 +192,7 @@ const IndexPage = () => {
               <CircularProgress color="secondary" />
             </div>
           ) : (
-            <DataDisplay
+            <DisplayGrid
               data={covidData}
               wiki={wikiData}
               extendedWiki={extendedWikiData}
