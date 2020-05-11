@@ -45,6 +45,19 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+const MenuLink = ({ onClick, href, icon, children }) => (
+  <MenuItem
+    onClick={onClick}
+    component="a"
+    href={href}
+    rel="noreferrer noopener"
+    target="_blank"
+  >
+    <ListItemIcon>{icon}</ListItemIcon>
+    {children}
+  </MenuItem>
+)
+
 const InfoButton = () => {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = useState(null)
@@ -76,42 +89,24 @@ const InfoButton = () => {
         onClose={handleClose}
       >
         <MenuList>
-          <MenuItem
+          <MenuLink
             onClick={handleClose}
-            component="a"
             href="https://github.com/Marco-Daniel/corona-tracker"
-            rel="noreferrer noopener"
-            target="_blank"
-          >
-            <ListItemIcon>
-              <GitHubIcon fontSize="small" />
-            </ListItemIcon>
-            Broncode
-          </MenuItem>
-          <MenuItem
+            icon={<GitHubIcon fontSize="small" />}
+            children="Broncode"
+          />
+          <MenuLink
             onClick={handleClose}
-            component="a"
             href="https://github.com/pomber/covid19"
-            rel="noreferrer noopener"
-            target="_blank"
-          >
-            <ListItemIcon>
-              <StorageIcon fontSize="small" />
-            </ListItemIcon>
-            Databron
-          </MenuItem>
-          <MenuItem
+            icon={<StorageIcon fontSize="small" />}
+            children="Databron"
+          />
+          <MenuLink
             onClick={handleClose}
-            component="a"
             href="https://www.mddd.nl"
-            rel="external author noreferrer noopener"
-            target="_blank"
-          >
-            <ListItemIcon>
-              <WhiteMark width="30" height="30" />
-            </ListItemIcon>
-            www.mddd.nl
-          </MenuItem>
+            icon={<WhiteMark width="30" height="30" />}
+            children="www.mddd.nl"
+          />
         </MenuList>
       </Menu>
     </>
