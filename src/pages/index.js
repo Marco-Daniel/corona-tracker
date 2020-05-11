@@ -104,6 +104,16 @@ const translateCountryNames = data => {
   return translations
 }
 
+const fetchNetworkResource = async (url, options) => {
+  const data = await fetch(url, options)
+
+  if (data.ok) {
+    return await data.json()
+  } else {
+    throw new Error(`Something went wrong while fethcing: ${url}`)
+  }
+}
+
 const IndexPage = () => {
   const [covidData, setCovidData] = useState([])
   const [wikiData, setWikiData] = useState()
@@ -119,44 +129,22 @@ const IndexPage = () => {
     // useEffect can't be a async function of itself
     // so to do async work create a function inside of useEffect
     const asyncWork = async () => {
-      const fetchCovidData = async () => {
-        const data = await fetch(
-          "https://pomber.github.io/covid19/timeseries.json",
-          {
-            method: "GET",
-            redirect: "follow",
-          }
-        )
-        return await data.json()
-      }
-
-      const fetchWikipediaData = async () => {
-        const data = await fetch(
-          "http://nl.wikipedia.org/w/api.php?action=query&prop=extracts%7Cdescription&format=json&origin=*&exintro=&titles=Coronapandemie",
-          {
-            method: "GET",
-          }
-        )
-
-        return await data.json()
-      }
-
-      const fetchExtendedWikipediaData = async () => {
-        const data = await fetch(
-          "http://nl.wikipedia.org/w/api.php?action=query&prop=extracts%7Cdescription&format=json&origin=*&exintro=&titles=Coronacrisis_in_Nederland",
-          {
-            method: "GET",
-          }
-        )
-
-        return await data.json()
-      }
-
       try {
+        const covidDataURL = "https://pomber.github.io/covid19/timeseries.json"
+        const covidDataOptions = { method: "GET", redirect: "follow" }
+
+        const baseWikiDataURL =
+          "http://nl.wikipedia.org/w/api.php?action=query&prop=extracts%7Cdescription&format=json&origin=*&exintro=&titles="
+
+        const wikiDataURL = baseWikiDataURL + "Coronapandemie"
+        const extendedWikiDataURL =
+          baseWikiDataURL + "Coronacrisis_in_Nederland"
+        const wikiDataOptions = { method: "GET" }
+
         const [covidData, wikiData, extendedWikiData] = await Promise.all([
-          fetchCovidData(),
-          fetchWikipediaData(),
-          fetchExtendedWikipediaData(),
+          fetchNetworkResource(covidDataURL, covidDataOptions),
+          fetchNetworkResource(wikiDataURL, wikiDataOptions),
+          fetchNetworkResource(extendedWikiDataURL, wikiDataOptions),
         ])
 
         const translatedCovidData = translateCountryNames(covidData)
