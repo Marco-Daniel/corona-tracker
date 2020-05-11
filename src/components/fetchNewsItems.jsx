@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import CircularProgress from "@material-ui/core/CircularProgress"
-import DisplayNewsItems from "./displayNewsItems"
+import DisplayNewsItems from "./data-display/displayNewsItems"
+
+import fetchNetworkResource from "../globals/fetchNetworkResource"
 
 const FetchNewsItems = () => {
   const {
@@ -24,18 +26,22 @@ const FetchNewsItems = () => {
     // useEffect can't be a async function of itself
     // so to do async work create a function inside of useEffect
     const asyncWork = async () => {
-      const data = await fetch(
-        "https://newsapi.org/v2/everything?sources=rtl-nieuws&q=+corona&sortBy=publishedAt",
-        {
+      try {
+        const url =
+          "https://newsapi.org/v2/everything?sources=rtl-nieuws&q=+corona&sortBy=publishedAt"
+        const options = {
           method: "GET",
           headers: new Headers({
             Authorization: `Bearer ${newsAPIKey}`,
           }),
         }
-      )
 
-      const json = await data.json()
-      setData(json)
+        const data = await fetchNetworkResource(url, options)
+
+        setData(data)
+      } catch (error) {
+        console.log(error)
+      }
     }
 
     asyncWork()

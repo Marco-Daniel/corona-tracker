@@ -8,6 +8,7 @@ import Particles from "react-particles-js"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import DataDisplay from "../components/dataDisplay"
+import fetchNetworkResource from "../globals/fetchNetworkResource"
 
 import translationData from "../../world-countries/data/translations.json"
 
@@ -104,16 +105,6 @@ const translateCountryNames = data => {
   }, {})
 
   return translations
-}
-
-const fetchNetworkResource = async (url, options) => {
-  const data = await fetch(url, options)
-
-  if (data.ok) {
-    return await data.json()
-  } else {
-    throw new Error(`Something went wrong while fethcing: ${url}`)
-  }
 }
 
 const IndexPage = () => {
