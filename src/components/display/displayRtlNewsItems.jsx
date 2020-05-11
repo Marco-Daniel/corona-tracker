@@ -4,7 +4,7 @@ import List from "@material-ui/core/List"
 import Typography from "@material-ui/core/Typography"
 import { useTheme } from "@material-ui/core/styles"
 
-const DisplayNewsItems = ({ data }) => {
+const DisplayRtlNewsItems = ({ data }) => {
   const theme = useTheme()
   return (
     <>
@@ -33,4 +33,4 @@ const DisplayNewsItems = ({ data }) => {
   )
 }
 
-export default DisplayNewsItems
+export default DisplayRtlNewsItems
