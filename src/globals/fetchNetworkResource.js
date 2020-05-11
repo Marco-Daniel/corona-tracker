@@ -1,4 +1,6 @@
-const fetchNetworkResource = async (url, options) => {
+const fetchNetworkResource = async (url, options = {}) => {
+  if (url == null) throw new Error("Please provide an URL to fetch")
+
   const data = await fetch(url, options)
 
   if (data.ok) {
