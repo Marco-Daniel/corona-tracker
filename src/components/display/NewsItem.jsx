@@ -56,7 +56,9 @@ const DisplayNewsItems = ({ item }) => {
       className={classes.root}
       divider
     >
-      <img className={classes.image} src={item.urlToImage} />
+      {item.urlToImage && (
+        <img className={classes.image} src={item.urlToImage} />
+      )}
       <section className={classes.body}>
         <Typography variant="h6" className={classes.title}>
           {item.title}
