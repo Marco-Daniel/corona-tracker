@@ -2,7 +2,9 @@
   Over deze App
 </h1>
 
-Deze app is opgebouwd in [Gatsby](https://www.gatsbyjs.org), dat is een [React](https://reactjs.org) framework waarmee razendsnelle en goed geoptimaliseerde websites, webshops en webapps te ontwikkelen zijn zijn. De styling van deze app is op basis van Google's [Material design](https://material.io).
+Deze app is opgebouwd in [Gatsby](https://www.gatsbyjs.org), dat is een [React](https://reactjs.org) framework waarmee razendsnelle, goed geoptimaliseerde en dynamische websites, webshops en webapps te ontwikkelen zijn. De styling van deze app is op basis van Google's [Material design](https://material.io) principes.
+De app is serverless, wat wil zeggen dat er geen backend server nodig is voor deze app. Alles speelt zich in de browser af. Uiteraard is er wel een webserver nodig om de app te hosten. Bij elke wijziging van de broncode in de [repository](https://github.com/Marco-Daniel/corona-tracker) wordt de app automatisch opnieuw gebouwd en geüpload naar de webserver.
+Deze app is open-source, neem gerust een kijkje in de [broncode](https://github.com/Marco-Daniel/corona-tracker).
 
 ## Gebruikte databronnen
 
@@ -22,4 +24,4 @@ Deze app is opgebouwd in [Gatsby](https://www.gatsbyjs.org), dat is een [React](
 
     Ook [RTL nieuws](https://www.rtlnieuws.nl/) beschikt helaas niet over een openbare _API_. Wel is er [Newsapi.org](https://newsapi.org) welke wel de laatste artikelen van RTL nieuws beschikbaar stelt.
 
-Interesse in een website, webshop of app zoals deze? Neem dan nu contact op via [mddd.nl](https://mddd.nl)!
+Interesse in een website, webshop of app zoals deze? Of vragen? Neem dan gerust contact op via [mddd.nl](https://mddd.nl)!
