@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import CircularProgress from "@material-ui/core/CircularProgress"
+import Alert from "@material-ui/lab/Alert"
+import { useTheme } from "@material-ui/core/styles"
 import NewsTabs from "./newsTabs"
 import { xml2js } from "xml-js"
 
 import fetchNetworkResource from "../../globals/fetchNetworkResource"
-import capitalizeFirstLetter from "../../globals/capitalizeFirstLetter"
 
-const createSearchList = listArray => {
-  return listArray.reduce((accumulator, item) => {
-    accumulator.push(item, capitalizeFirstLetter(item))
-
-    return accumulator
-  }, [])
-}
+const xmlToJson = xml =>
+  xml2js(xml, {
+    compact: true,
+    alwaysChildren: true,
+    ignoreInstruction: true,
+    ignoreAttributes: true,
+    ignoreDeclaration: true,
+  })
 
 const FetchNewsItems = () => {
   const {
@@ -33,6 +35,8 @@ const FetchNewsItems = () => {
   const [rtlData, setRtlData] = useState(false)
   const [nosData, setNosData] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(false)
+  const theme = useTheme()
 
   useEffect(() => {
     // useEffect can't be a async function of itself
@@ -48,70 +52,70 @@ const FetchNewsItems = () => {
           }),
         }
 
-        const nosURL =
+        const nosBinnenlandURL =
           "https://corsify.appspot.com/http://feeds.nos.nl/nosnieuwsbinnenland"
+        const nosBuitenlandURL =
+          "https://corsify.appspot.com/http://feeds.nos.nl/nosnieuwsbuitenland"
 
-        const [rtlData, nosData] = await Promise.all([
+        const [rtlData, nosBinnenData, nosBuitenData] = await Promise.all([
           fetchNetworkResource(rtlURL, rtlOptions),
-          fetch(nosURL),
+          fetch(nosBinnenlandURL),
+          fetch(nosBuitenlandURL),
         ])
 
-        const nosJSON = xml2js(await nosData.text(), {
-          alwaysChildren: true,
-          ignoreInstruction: true,
-          ignoreAttributes: true,
-          ignoreDeclaration: true,
-        })
+        const binnenXML = await nosBinnenData.text()
+        const buitenXML = await nosBuitenData.text()
 
-        const list = nosJSON.elements[0].elements[0].elements.filter(
-          el => el.name === "item"
+        const binnenJSON = xmlToJson(binnenXML)
+        const buitenJSON = xmlToJson(buitenXML)
+
+        console.log(binnenJSON)
+        console.log(buitenJSON)
+
+        const nosArray = binnenJSON.rss.channel.item.concat(
+          buitenJSON.rss.channel.item
         )
-        const searchList = createSearchList([
-          "corona",
-          "coronatijd",
-          "pandemie",
-          "coronapandemie",
-          "corona-pandemie",
-          "besmetting",
-          "besmettingen",
-        ])
 
-        const coronaList = list.reduce((accumulator, item, i) => {
-          const title = item.elements.filter(el => el.name === "title")[0]
-            .elements[0].cdata
-          const description = item.elements.filter(
-            el => el.name === "description"
-          )[0].elements[0].text
-
-          let found = false
-
-          searchList.forEach((value, key) => {
-            const isInTitle = title.includes(value)
-            const isInDescription = description.includes(value)
-
-            if (isInTitle || isInDescription) found = true
-          })
-
-          if (found) accumulator.push(item)
-
-          return accumulator
-        }, [])
-
-        setNosData(coronaList)
+        setNosData(nosArray)
         setRtlData(rtlData)
         setIsLoading(true)
       } catch (error) {
         console.log(error)
+        setError(true)
       }
     }
 
     asyncWork()
   }, [])
 
+  if (error) {
+    return (
+      <div style={{ padding: theme.spacing(1) }}>
+        <Alert severity="error">
+          Helaas, er is iets fout gegaan met het laden van de nieuwsartikelen.
+          <br />
+          Waarschijnlijk zijn er een of meerdere bronnen momenteel offline.
+          <br />
+          Probeer de pagina op een later tijdstip te herladen, als het probleem
+          blijft neem dan contact met op de ontwikkelaar van deze app op&nbsp;
+          <a href="https://mddd.nl" rel="noreferrer noopener" target="_blank">
+            www.mddd.nl
+          </a>
+        </Alert>
+      </div>
+    )
+  }
+
   return isLoading ? (
     <NewsTabs rtlData={rtlData} nosData={nosData} />
   ) : (
-    <div style={{ display: "flex", justifyContent: "center" }}>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        padding: theme.spacing(2),
+      }}
+    >
       <CircularProgress color="secondary" />
     </div>
   )
