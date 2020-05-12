@@ -105,20 +105,23 @@ const CollapseDataContainer = ({
           ) : (
             children
           )}
-          {bottomCloseButton ? (
+          {bottomCloseButton && (
             <div
               style={{
                 display: "flex",
                 justifyContent: "center",
                 paddingTop: theme.spacing(1),
               }}
-              onClick={handleExpandClick}
             >
-              <Button variant="outlined" size="large">
+              <Button
+                variant="outlined"
+                size="large"
+                onClick={handleExpandClick}
+              >
                 Sluit
               </Button>
             </div>
-          ) : null}
+          )}
         </CardContent>
       </Collapse>
     </Card>
