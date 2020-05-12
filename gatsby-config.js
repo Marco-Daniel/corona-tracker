@@ -39,8 +39,8 @@ module.exports = {
         name: `Corona Tracker`,
         short_name: `covid-19-tracker`,
         start_url: `/`,
-        background_color: `#000000`,
-        theme_color: `#000000`,
+        background_color: `#49316C`,
+        theme_color: `#49316C`,
         display: `minimal-ui`,
         icon: `static/covid-19.png`, // This path is relative to the root of the site.
       },
