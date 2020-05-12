@@ -129,7 +129,7 @@ const IndexPage = () => {
         const covidDataOptions = { method: "GET", redirect: "follow" }
 
         const baseWikiDataURL =
-          "http://nl.wikipedia.org/w/api.php?action=query&prop=extracts%7Cdescription&format=json&origin=*&exintro=&titles="
+          "https://nl.wikipedia.org/w/api.php?action=query&prop=extracts%7Cdescription&format=json&origin=*&exintro=&titles="
 
         const wikiDataURL = baseWikiDataURL + "Coronapandemie"
         const extendedWikiDataURL =
@@ -137,7 +137,7 @@ const IndexPage = () => {
         const wikiDataOptions = { method: "GET" }
 
         const wikiRulesURL =
-          "http://nl.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&origin=*&titles=Maatregelen_tijdens_de_coronacrisis_in_Nederland"
+          "https://nl.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&origin=*&titles=Maatregelen_tijdens_de_coronacrisis_in_Nederland"
 
         const [covid, wiki, extendedWiki, wikiRules] = await Promise.all([
           fetchNetworkResource(covidDataURL, covidDataOptions),
