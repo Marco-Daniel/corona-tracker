@@ -26,6 +26,7 @@
     "react-helmet": "^6.0.0",
     "react-particles-js": "^3.2.1",
     "typeface-roboto": "0.0.75",
+    "vanilla-back-to-top": "^7.2.1",
     "xml-js": "^1.6.11"
   },
   "devDependencies": {

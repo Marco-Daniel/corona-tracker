@@ -1,6 +1,8 @@
-import React from "react"
+import React, { useEffect } from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
+import { useTheme } from "@material-ui/core/styles"
+import { addBackToTop } from "vanilla-back-to-top"
 
 import Header from "./header"
 import chartWidth from "../../globals/chartWidth"
@@ -15,6 +17,17 @@ const Layout = ({ children }) => {
       }
     }
   `)
+
+  const theme = useTheme()
+
+  useEffect(() => {
+    addBackToTop({
+      diameter: 40,
+      backgroundColor: theme.palette.secondary.main,
+      textColor: theme.palette.secondary.contrastText,
+      zIndex: theme.zIndex.appBar + 100,
+    })
+  }, [])
 
   return (
     <>
