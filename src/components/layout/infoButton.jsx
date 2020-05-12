@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { useStaticQuery, graphql } from "gatsby"
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined"
 import IconButton from "@material-ui/core/IconButton"
 import Menu from "@material-ui/core/Menu"
@@ -8,6 +9,11 @@ import GitHubIcon from "@material-ui/icons/GitHub"
 import StorageIcon from "@material-ui/icons/Storage"
 import MenuList from "@material-ui/core/MenuList"
 import { makeStyles, useTheme } from "@material-ui/core/styles"
+import Modal from "@material-ui/core/Modal"
+import Paper from "@material-ui/core/Paper"
+import CancelRoundedIcon from "@material-ui/icons/CancelRounded"
+import HelpOutlineOutlinedIcon from "@material-ui/icons/HelpOutlineOutlined"
+import Typography from "@material-ui/core/Typography"
 
 const MDDDLogo = props => {
   const theme = useTheme()
@@ -43,9 +49,58 @@ const useStyles = makeStyles(theme => ({
   button: {
     color: theme.palette.primary.contrastText,
   },
+  paper: {
+    width: "90vw",
+    height: "90vh",
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    border: "none",
+    "&:focus": {
+      outline: "none",
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: "100vw",
+      height: "100vh",
+      overflow: "scroll",
+    },
+  },
+  close: {
+    position: "relative",
+    top: theme.spacing(1),
+    right: `calc(-1 * calc(100% - ${theme.spacing(7)}px))`,
+  },
+  readme: {
+    maxWidth: 800,
+    padding: theme.spacing(2),
+    margin: "0 auto",
+    "& a": {
+      color:
+        theme.palette.type === "light"
+          ? theme.palette.primary.main
+          : theme.palette.secondary.main,
+      textDecoration: "none",
+    },
+    "& a:hover": {
+      color:
+        theme.palette.type === "light"
+          ? theme.palette.secondary.main
+          : theme.palette.primary.main,
+    },
+  },
+  closeIcon: {
+    color:
+      theme.palette.type === "light"
+        ? theme.palette.secondary.dark
+        : theme.palette.secondary.light,
+  },
+  menuIcons: {
+    justifyContent: "center",
+  },
 }))
 
-const MenuLink = ({ onClick, href, icon, children }) => (
+const MenuLink = ({ onClick, href, icon, iconClass, children }) => (
   <MenuItem
     onClick={onClick}
     component="a"
@@ -53,14 +108,24 @@ const MenuLink = ({ onClick, href, icon, children }) => (
     rel="noreferrer noopener"
     target="_blank"
   >
-    <ListItemIcon>{icon}</ListItemIcon>
+    <ListItemIcon className={iconClass}>{icon}</ListItemIcon>
     {children}
   </MenuItem>
 )
 
 const InfoButton = () => {
+  const {
+    markdownRemark: { html },
+  } = useStaticQuery(graphql`
+    query readme {
+      markdownRemark {
+        html
+      }
+    }
+  `)
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = useState(null)
+  const [modalOpen, setModalOpen] = useState(false)
 
   const handleClick = event => setAnchorEl(event.currentTarget)
 
@@ -85,26 +150,54 @@ const InfoButton = () => {
         onClose={handleClose}
       >
         <MenuList>
+          <MenuItem
+            onClick={() => {
+              setModalOpen(true)
+              handleClose()
+            }}
+          >
+            <ListItemIcon className={classes.menuIcons}>
+              <HelpOutlineOutlinedIcon />
+            </ListItemIcon>
+            Over deze app
+          </MenuItem>
           <MenuLink
             onClick={handleClose}
             href="https://github.com/Marco-Daniel/corona-tracker"
             icon={<GitHubIcon fontSize="small" />}
             children="Broncode"
+            iconClass={classes.menuIcons}
           />
           <MenuLink
             onClick={handleClose}
             href="https://github.com/pomber/covid19"
             icon={<StorageIcon fontSize="small" />}
             children="Databron"
+            iconClass={classes.menuIcons}
           />
           <MenuLink
             onClick={handleClose}
             href="https://www.mddd.nl"
             icon={<MDDDLogo width="30" height="30" />}
             children="www.mddd.nl"
+            iconClass={classes.menuIcons}
           />
         </MenuList>
       </Menu>
+
+      <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
+        <Paper elevation={5} className={classes.paper}>
+          <IconButton
+            onClick={() => setModalOpen(false)}
+            className={classes.close}
+          >
+            <CancelRoundedIcon className={classes.closeIcon} />
+          </IconButton>
+          <div className={classes.readme}>
+            <Typography dangerouslySetInnerHTML={{ __html: html }} />
+          </div>
+        </Paper>
+      </Modal>
     </>
   )
 }
