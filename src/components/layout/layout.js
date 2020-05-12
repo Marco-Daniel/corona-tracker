@@ -27,6 +27,7 @@ const Layout = ({ children }) => {
       textColor: theme.palette.secondary.contrastText,
       zIndex: theme.zIndex.appBar + 100,
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

@@ -22,6 +22,7 @@ const ToggleModeSwitch = () => {
 
   useEffect(() => {
     if (prefersDarkMode) toggleChecked()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [prefersDarkMode])
 
   return (

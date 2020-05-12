@@ -65,7 +65,7 @@ const LineChart = ({ data }) => {
         }, []),
       },
     })
-  }, [data])
+  }, [data, firstDate, lastDate])
 
   return (
     <>
