@@ -34,18 +34,6 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const Icon = ({ theme }) => (
-  <img
-    src="covid-19.png"
-    alt="logo"
-    style={{
-      width: 20,
-      height: 20,
-      margin: `0 ${theme.spacing(1)}px`,
-    }}
-  />
-)
-
 const Header = ({ siteTitle }) => {
   const classes = useStyles()
   const theme = useTheme()
@@ -56,11 +44,9 @@ const Header = ({ siteTitle }) => {
       <AppBar position="fixed" className={classes.root}>
         <Toolbar className={classes.toolbar}>
           <div className={classes.title}>
-            <Icon theme={theme} />
             <Typography variant="h6" component="h1">
               {smScreen ? "Covid-19" : siteTitle}
             </Typography>
-            <Icon theme={theme} />
           </div>
           <div className={classes.buttonContainer}>
             <ToggleModeSwitch />
