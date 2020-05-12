@@ -165,7 +165,7 @@ const IndexPage = () => {
             Helaas, er is iets fout gegaan.
             <br />
             Probeer de pagina te herladen, als het probleem blijft neem dan
-            contact met op de ontwikkelaar van deze op&nbsp;
+            contact met op de ontwikkelaar van deze app op&nbsp;
             <a href="https://mddd.nl" rel="noreferrer noopener" target="_blank">
               www.mddd.nl
             </a>
