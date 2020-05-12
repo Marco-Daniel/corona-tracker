@@ -4,7 +4,7 @@
 
 Deze app is opgebouwd in [Gatsby](https://www.gatsbyjs.org), dat is een [React](https://reactjs.org) framework waarmee razendsnelle en goed geoptimaliseerde websites, webshops en webapps te ontwikkelen zijn zijn. De styling van deze app is op basis van Google's [Material design](https://material.io).
 
-## Databronnen
+## Gebruikte databronnen
 
 1.  **COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University**
 
@@ -21,3 +21,5 @@ Deze app is opgebouwd in [Gatsby](https://www.gatsbyjs.org), dat is een [React](
 4.  **RTL nieuwsartikelen**
 
     Ook [RTL nieuws](https://www.rtlnieuws.nl/) beschikt helaas niet over een openbare _API_. Wel is er [Newsapi.org](https://newsapi.org) welke wel de laatste artikelen van RTL nieuws beschikbaar stelt.
+
+Interesse in een website, webshop of app zoals deze? Neem dan nu contact op via [mddd.nl](https://mddd.nl)!
