@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import CardContent from "@material-ui/core/CardContent"
-import Typography from "@material-ui/core/Typography"
 import AppBar from "@material-ui/core/AppBar"
 import Tabs from "@material-ui/core/Tabs"
 import Tab from "@material-ui/core/Tab"
@@ -14,9 +13,6 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
   },
   header: {
-    ...theme.mixins.toolbar,
-    display: "flex",
-    justifyContent: "flex-end",
     backgroundColor: theme.palette.primary.light,
   },
 }))
