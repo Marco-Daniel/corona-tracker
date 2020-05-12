@@ -65,6 +65,9 @@ const useStyles = makeStyles(theme => ({
       height: "100vh",
     },
   },
+  menuContainer: {
+    paddingRight: theme.spacing(1.5),
+  },
   close: {
     position: "relative",
     top: theme.spacing(1),
@@ -72,9 +75,10 @@ const useStyles = makeStyles(theme => ({
   },
   readme: {
     maxWidth: 800,
+    height: "80vh",
     padding: theme.spacing(2),
     margin: "0 auto",
-    overflow: "scroll",
+    overflow: "hidden",
     "& a": {
       color:
         theme.palette.type === "light"
@@ -88,6 +92,10 @@ const useStyles = makeStyles(theme => ({
           ? theme.palette.secondary.main
           : theme.palette.primary.main,
     },
+  },
+  content: {
+    overflow: "scroll",
+    height: "80vh",
   },
   closeIcon: {
     color:
@@ -149,7 +157,7 @@ const InfoButton = () => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuList>
+        <MenuList className={classes.menuContainer}>
           <MenuItem
             onClick={() => {
               setModalOpen(true)
@@ -178,7 +186,7 @@ const InfoButton = () => {
           <MenuLink
             onClick={handleClose}
             href="https://www.mddd.nl"
-            icon={<MDDDLogo width="30" height="30" />}
+            icon={<MDDDLogo width="24" height="24" />}
             children="www.mddd.nl"
             iconClass={classes.menuIcons}
           />
@@ -194,7 +202,10 @@ const InfoButton = () => {
             <CancelRoundedIcon className={classes.closeIcon} />
           </IconButton>
           <div className={classes.readme}>
-            <Typography dangerouslySetInnerHTML={{ __html: html }} />
+            <Typography
+              dangerouslySetInnerHTML={{ __html: html }}
+              className={classes.content}
+            />
           </div>
         </Paper>
       </Modal>
