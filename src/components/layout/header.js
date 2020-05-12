@@ -25,8 +25,6 @@ const useStyles = makeStyles(theme => ({
     top: "50%",
     left: "50%",
     transform: "translateX(-50%) translateY(-50%)",
-    display: "flex",
-    alignItems: "center",
   },
   offset: theme.mixins.toolbar,
   toolbar: {
@@ -43,11 +41,9 @@ const Header = ({ siteTitle }) => {
     <>
       <AppBar position="fixed" className={classes.root}>
         <Toolbar className={classes.toolbar}>
-          <div className={classes.title}>
-            <Typography variant="h6" component="h1">
-              {smScreen ? "Covid-19" : siteTitle}
-            </Typography>
-          </div>
+          <Typography variant="h6" component="h1" className={classes.title}>
+            {smScreen ? "Covid-19" : siteTitle}
+          </Typography>
           <div className={classes.buttonContainer}>
             <ToggleModeSwitch />
             <InfoButton />
