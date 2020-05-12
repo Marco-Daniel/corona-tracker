@@ -9,7 +9,11 @@ const ExtendedWikipediaData = ({ data }) => {
   } = data
 
   return (
-    <CollapseDataContainer title={wikiData.title} initState={false}>
+    <CollapseDataContainer
+      title={wikiData.title}
+      initState={false}
+      bottomCloseButton
+    >
       {wikiData.extract}
     </CollapseDataContainer>
   )

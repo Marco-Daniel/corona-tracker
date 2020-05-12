@@ -5,6 +5,7 @@ import AppBar from "@material-ui/core/AppBar"
 import Typography from "@material-ui/core/Typography"
 import { makeStyles, useTheme } from "@material-ui/core/styles"
 import IconButton from "@material-ui/core/IconButton"
+import Button from "@material-ui/core/Button"
 import Collapse from "@material-ui/core/Collapse"
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
 import clsx from "clsx"
@@ -54,6 +55,7 @@ const CollapseDataContainer = ({
   initState,
   useTypography,
   padding,
+  bottomCloseButton,
   children,
 }) => {
   const classes = useStyles()
@@ -103,6 +105,20 @@ const CollapseDataContainer = ({
           ) : (
             children
           )}
+          {bottomCloseButton ? (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                paddingTop: theme.spacing(1),
+              }}
+              onClick={handleExpandClick}
+            >
+              <Button variant="outlined" size="large">
+                Sluit
+              </Button>
+            </div>
+          ) : null}
         </CardContent>
       </Collapse>
     </Card>
@@ -112,6 +128,7 @@ const CollapseDataContainer = ({
 CollapseDataContainer.defaultProps = {
   useTypography: true,
   padding: 4,
+  bottomCloseButton: false,
 }
 
 export default CollapseDataContainer
