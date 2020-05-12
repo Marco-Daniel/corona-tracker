@@ -7,6 +7,7 @@ import { makeStyles } from "@material-ui/core/styles"
 import createGlobalData from "../../globals/createGlobalData"
 import WikipediaData from "./wikipediaData"
 import ExtendedWikipediaData from "./extendedWikipediaData"
+import WikipediaRulesData from "./wikipediaRulesData"
 
 const useStyles = makeStyles(theme => ({
   poweredBy: {
@@ -19,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const DisplayGrid = ({ data, wiki, extendedWiki }) => {
+const DisplayGrid = ({ data, wiki, extendedWiki, wikiRules }) => {
   const nederlandData = data.Nederland
   const globalData = createGlobalData(data)
   const classes = useStyles()
@@ -31,6 +32,9 @@ const DisplayGrid = ({ data, wiki, extendedWiki }) => {
       </Grid>
       <Grid item xs={12} lg={7}>
         <WikipediaData data={wiki} />
+      </Grid>
+      <Grid item xs={12}>
+        <WikipediaRulesData data={wikiRules} />
       </Grid>
       <Grid item xs={12}>
         <ExtendedWikipediaData data={extendedWiki} />

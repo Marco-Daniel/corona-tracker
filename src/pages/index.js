@@ -111,6 +111,7 @@ const IndexPage = () => {
   const [covidData, setCovidData] = useState([])
   const [wikiData, setWikiData] = useState()
   const [extendedWikiData, setExtendedWikiData] = useState()
+  const [wikiRulesData, setWikiRulesData] = useState()
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(false)
   const classes = useStyles()
@@ -134,17 +135,22 @@ const IndexPage = () => {
           baseWikiDataURL + "Coronacrisis_in_Nederland"
         const wikiDataOptions = { method: "GET" }
 
-        const [covidData, wikiData, extendedWikiData] = await Promise.all([
+        const wikiRulesURL =
+          "http://nl.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&origin=*&titles=Maatregelen_tijdens_de_coronacrisis_in_Nederland"
+
+        const [covid, wiki, extendedWiki, wikiRules] = await Promise.all([
           fetchNetworkResource(covidDataURL, covidDataOptions),
           fetchNetworkResource(wikiDataURL, wikiDataOptions),
           fetchNetworkResource(extendedWikiDataURL, wikiDataOptions),
+          fetchNetworkResource(wikiRulesURL, wikiDataOptions),
         ])
 
-        const translatedCovidData = translateCountryNames(covidData)
+        const translatedCovidData = translateCountryNames(covid)
 
         setCovidData(translatedCovidData)
-        setWikiData(wikiData)
-        setExtendedWikiData(extendedWikiData)
+        setWikiData(wiki)
+        setExtendedWikiData(extendedWiki)
+        setWikiRulesData(wikiRules)
         setIsLoading(false)
       } catch (error) {
         console.log(error)
@@ -196,6 +202,7 @@ const IndexPage = () => {
               data={covidData}
               wiki={wikiData}
               extendedWiki={extendedWikiData}
+              wikiRules={wikiRulesData}
             />
           )}
         </div>
