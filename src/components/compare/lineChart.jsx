@@ -26,9 +26,6 @@ const LineChart = ({ data }) => {
                 min: firstDate,
                 max: lastDate,
               },
-              gridLines: {
-                drawOnChartArea: false,
-              },
             },
           ],
           yAxes: [
@@ -45,17 +42,19 @@ const LineChart = ({ data }) => {
       },
       data: {
         datasets: data.reduce((accumulator, country, i) => {
+          const multiplier = i + 1 // so it starts at 2 instead of 0
+
           accumulator.push(
             createDataSet(
               `Bevestigd ${country.label}`,
-              `${i}, 10, 66`,
+              `${34 * multiplier}, ${169 / multiplier}, 194`,
               country.data,
               `confirmed`,
               false
             ),
             createDataSet(
               `Overleden ${country.label}`,
-              `250, ${i}, 0`,
+              `216, ${38 * multiplier}, ${54 * multiplier}`,
               country.data,
               `deaths`,
               false
