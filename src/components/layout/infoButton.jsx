@@ -76,7 +76,6 @@ const useStyles = makeStyles(theme => ({
   readme: {
     maxWidth: 800,
     height: "80vh",
-    padding: theme.spacing(2),
     margin: "0 auto",
     overflow: "hidden",
     "& a": {
@@ -95,7 +94,9 @@ const useStyles = makeStyles(theme => ({
   },
   content: {
     overflow: "scroll",
+    overflowX: "hidden",
     height: "80vh",
+    padding: theme.spacing(2),
   },
   closeIcon: {
     color:
