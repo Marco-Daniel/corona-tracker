@@ -14,9 +14,16 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     display: "flex",
     justifyContent: "center",
+    marginBottom: theme.spacing(2),
   },
   link: {
     color: theme.palette.secondary.main,
+  },
+  mdddLink: {
+    color: "#d96534",
+    "&:hover": {
+      color: theme.palette.type === "light" ? "#000000" : "#ffffff",
+    },
   },
 }))
 
@@ -47,6 +54,21 @@ const DisplayGrid = ({ data, wiki, extendedWiki, wikiRules }) => {
         />
       </Grid>
       <Grid item xs={12}>
+        <div className={classes.poweredBy}>
+          <div style={{ textAlign: "center" }}>
+            Interesse in een website, webshop of app zoals deze?
+            <br />
+            Neem dan nu contact op via&nbsp;
+            <a
+              href="https://mddd.nl/"
+              className={classes.mdddLink}
+              rel="noreferrer noopener"
+              target="_blank"
+            >
+              mddd.nl
+            </a>
+          </div>
+        </div>
         <div className={classes.poweredBy}>
           Built with &nbsp;
           <a
