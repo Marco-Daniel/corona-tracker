@@ -69,9 +69,6 @@ const FetchNewsItems = () => {
         const binnenJSON = xmlToJson(binnenXML)
         const buitenJSON = xmlToJson(buitenXML)
 
-        console.log(binnenJSON)
-        console.log(buitenJSON)
-
         const nosArray = binnenJSON.rss.channel.item.concat(
           buitenJSON.rss.channel.item
         )
@@ -113,7 +110,7 @@ const FetchNewsItems = () => {
       style={{
         display: "flex",
         justifyContent: "center",
-        padding: theme.spacing(2),
+        marginTop: theme.spacing(4),
       }}
     >
       <CircularProgress color="secondary" />
