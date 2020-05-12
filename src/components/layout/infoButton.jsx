@@ -63,7 +63,6 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down("sm")]: {
       width: "100vw",
       height: "100vh",
-      overflow: "scroll",
     },
   },
   close: {
@@ -75,6 +74,7 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 800,
     padding: theme.spacing(2),
     margin: "0 auto",
+    overflow: "scroll",
     "& a": {
       color:
         theme.palette.type === "light"
