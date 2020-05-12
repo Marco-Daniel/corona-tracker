@@ -42,6 +42,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(4),
   },
   error: {
+    marginTop: theme.spacing(2),
     padding: theme.spacing(2),
   },
   spinner: {
