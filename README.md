@@ -16,7 +16,7 @@ Deze app is opgebouwd in [Gatsby](https://www.gatsbyjs.org), dat is een [React](
 
 3.  **NOS nieuwsartikelen**
 
-    De [NOS](https://nos.nl/) beschikt helaas niet over een openbare _API_. Wel is er een RRS feed. Door een aantal handige truckjes toe te passen is het mogelijk om deze data bij het laden van de app in te lezen en te filteren. Zo worden altijd de laatste nieuwsartikelen getoond.
+    De [NOS](https://nos.nl/) beschikt helaas niet over een openbare _API_. Wel is er een RRS feed. Door een aantal handige truckjes toe te passen is het mogelijk om deze data bij het laden van de app in te lezen en te filteren. Zo worden altijd de laatste nieuwsartikelen getoond. Helaas is de rss feed niet over HTTPS beschikbaar, waardoor bij het laden van de data de melding verschijnt dat er delen onbeveiligd zijn op deze pagina.
 
 4.  **RTL nieuwsartikelen**
 
