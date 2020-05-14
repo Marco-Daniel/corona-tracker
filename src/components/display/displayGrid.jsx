@@ -64,8 +64,8 @@ const DisplayGrid = ({ data, wiki, extendedWiki, wikiRules }) => {
   return (
     <Grid container spacing={smScreen ? 2 : 4}>
       {isPortrait && smScreen ? (
-        <Grid item xs={12}>
-          <Collapse in={expanded} unmountOnExit>
+        <Collapse in={expanded} unmountOnExit>
+          <Grid item xs={12}>
             <Alert
               severity="info"
               action={
@@ -84,8 +84,8 @@ const DisplayGrid = ({ data, wiki, extendedWiki, wikiRules }) => {
               Draai uw telefoon naar landscape modus om de data in een grafiek
               te zien.
             </Alert>
-          </Collapse>
-        </Grid>
+          </Grid>
+        </Collapse>
       ) : null}
       <Grid item xs={12} lg={5}>
         <LatestData globalData={globalData} dataByCountry={data} />
