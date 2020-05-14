@@ -15,9 +15,9 @@ const WikipediaData = ({ data }) => {
   return (
     <CollapseDataContainer
       title={wikiData.description}
-      initState={smScreen}
+      initState={true}
       bottomCloseButton={smScreen}
-      padding={smScreen ? 1 : 4}
+      padding={smScreen ? 2 : 4}
     >
       {wikiData.extract}
     </CollapseDataContainer>

@@ -81,7 +81,7 @@ const DisplayGrid = ({ data, wiki, extendedWiki, wikiRules }) => {
                 </IconButton>
               }
             >
-              > Draai uw telefoon naar landscape modus om de data in een grafiek
+              Draai uw telefoon naar landscape modus om de data in een grafiek
               te zien.
             </Alert>
           </Collapse>

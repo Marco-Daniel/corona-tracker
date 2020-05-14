@@ -18,7 +18,7 @@ const ExtendedWikipediaData = ({ data }) => {
       title={wikiData.description}
       initState={false}
       bottomCloseButton
-      padding={smScreen ? 1 : 4}
+      padding={smScreen ? 2 : 4}
     >
       {wikiData.extract}
     </CollapseDataContainer>
