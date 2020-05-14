@@ -5,6 +5,9 @@ import { ThemeContext } from "./themeContextProvider"
 
 const toolbarHeight = 50
 
+const primaryColor = "#69469B"
+const secondaryColor = "#cf8fd2"
+
 const CustomThemeProvider = ({ children }) => {
   const { useDarkMode } = useContext(ThemeContext)
 
@@ -13,10 +16,13 @@ const CustomThemeProvider = ({ children }) => {
     palette: {
       type: useDarkMode ? "dark" : "light",
       primary: {
-        main: "#69469B",
+        main: primaryColor,
       },
       secondary: {
-        main: "#cf8fd2",
+        main: secondaryColor,
+      },
+      info: {
+        main: secondaryColor,
       },
     },
     mixins: {
