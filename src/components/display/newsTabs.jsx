@@ -15,6 +15,11 @@ const useStyles = makeStyles(theme => ({
   header: {
     backgroundColor: theme.palette.primary.light,
   },
+  container: {
+    [theme.breakpoints.down("xs")]: {
+      padding: 0,
+    },
+  },
 }))
 
 const a11yProps = index => {
@@ -24,7 +29,7 @@ const a11yProps = index => {
   }
 }
 
-const TabPanel = ({ children, value, index, ...other }) => {
+const TabPanel = ({ children, value, index, classes, ...other }) => {
   return (
     <div
       role="tabpanel"
@@ -33,7 +38,11 @@ const TabPanel = ({ children, value, index, ...other }) => {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && <Box p={3}>{children}</Box>}
+      {value === index && (
+        <Box className={classes.container} p={3}>
+          {children}
+        </Box>
+      )}
     </div>
   )
 }
@@ -60,10 +69,10 @@ const NewsTabs = ({ nosData, rtlData }) => {
         </Tabs>
       </AppBar>
       <CardContent>
-        <TabPanel value={value} index={0}>
+        <TabPanel value={value} index={0} classes={classes}>
           <DisplayNosNewsItems data={nosData} />
         </TabPanel>
-        <TabPanel value={value} index={1}>
+        <TabPanel value={value} index={1} classes={classes}>
           <DisplayRtlNewsItems data={rtlData.articles} />
         </TabPanel>
       </CardContent>

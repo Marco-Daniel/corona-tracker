@@ -1,6 +1,8 @@
 import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import Typography from "@material-ui/core/Typography"
+import { useTheme } from "@material-ui/core/styles"
+import useMediaQuery from "@material-ui/core/useMediaQuery"
 import CompareDataTable from "./compareDataTable"
 import reverseDateString from "../../globals/reverseDateString"
 
@@ -35,6 +37,8 @@ const LatestData = ({ globalData, dataByCountry }) => {
   const latestFranceData = getLatestData(dataByCountry.Frankrijk)
   const latestRussiaData = getLatestData(dataByCountry.Rusland)
   const latestUSData = getLatestData(dataByCountry["Verenigde Staten"])
+  const theme = useTheme()
+  const smScreen = useMediaQuery(theme.breakpoints.down("xs"))
 
   return (
     <CollapseDataContainer
@@ -47,7 +51,8 @@ const LatestData = ({ globalData, dataByCountry }) => {
       }
       initState={true}
       useTypography={false}
-      padding={2}
+      padding={smScreen ? 0 : 2}
+      bottomCloseButton={smScreen}
     >
       <CompareDataTable
         dataSets={[

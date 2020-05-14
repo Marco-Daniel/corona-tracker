@@ -10,13 +10,14 @@ const WikipediaData = ({ data }) => {
     },
   } = data
   const theme = useTheme()
-  const smScreen = useMediaQuery(theme.breakpoints.down("md"))
+  const smScreen = useMediaQuery(theme.breakpoints.down("xs"))
 
   return (
     <CollapseDataContainer
       title={wikiData.description}
-      initState={true}
+      initState={smScreen}
       bottomCloseButton={smScreen}
+      padding={smScreen ? 1 : 4}
     >
       {wikiData.extract}
     </CollapseDataContainer>

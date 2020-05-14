@@ -21,10 +21,17 @@ const useStyles = makeStyles(theme => ({
           : theme.palette.primary.light,
     },
     maxWidth: 800,
+    [theme.breakpoints.down("xs")]: {
+      display: "flex",
+      flexDirection: "column",
+    },
   },
   image: {
     minWidth: 250,
     maxWidth: 250,
+    [theme.breakpoints.down("xs")]: {
+      marginBottom: theme.spacing(2),
+    },
   },
   body: {
     display: "flex",

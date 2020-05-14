@@ -4,6 +4,7 @@ import CardContent from "@material-ui/core/CardContent"
 import AppBar from "@material-ui/core/AppBar"
 import Typography from "@material-ui/core/Typography"
 import { makeStyles, useTheme } from "@material-ui/core/styles"
+import useMediaQuery from "@material-ui/core/useMediaQuery"
 import IconButton from "@material-ui/core/IconButton"
 import Button from "@material-ui/core/Button"
 import Collapse from "@material-ui/core/Collapse"
@@ -61,6 +62,7 @@ const CollapseDataContainer = ({
   const classes = useStyles()
   const [expanded, setExpanded] = useState(initState)
   const theme = useTheme()
+  const smScreen = useMediaQuery(theme.breakpoints.down("xs"))
 
   const handleExpandClick = () => {
     setExpanded(!expanded)
@@ -86,7 +88,11 @@ const CollapseDataContainer = ({
           <ExpandMoreIcon />
         </IconButton>
         {useTypography ? (
-          <Typography variant="h6" align="center">
+          <Typography
+            variant={smScreen ? "body1" : "h6"}
+            align="center"
+            style={{ width: smScreen ? "70%" : "auto" }}
+          >
             {capitalizeFirstLetter(title)}
           </Typography>
         ) : (
@@ -111,6 +117,7 @@ const CollapseDataContainer = ({
                 display: "flex",
                 justifyContent: "center",
                 paddingTop: theme.spacing(1),
+                paddingBottom: smScreen ? theme.spacing(2) : 0,
               }}
             >
               <Button
@@ -130,6 +137,7 @@ const CollapseDataContainer = ({
 
 CollapseDataContainer.defaultProps = {
   useTypography: true,
+  initState: true,
   padding: 4,
   bottomCloseButton: false,
 }

@@ -50,7 +50,7 @@ const TabPanel = ({ children, value, index, tabStyle, ...other }) => {
   )
 }
 
-const DataGraph = ({ nederlandData, globalData, allData }) => {
+const DataGraph = ({ nederlandData, globalData, allData, hideNews }) => {
   const classes = useStyles()
   const [value, setValue] = useState(0)
 
@@ -70,7 +70,7 @@ const DataGraph = ({ nederlandData, globalData, allData }) => {
           <Tab label="Nederland" {...a11yProps(0)} />
           <Tab label="Wereldwijd" {...a11yProps(1)} />
           <Tab label="Vergelijk" {...a11yProps(2)} />
-          <Tab label="Laatste nieuws" {...a11yProps(3)} />
+          {!hideNews && <Tab label="Laatste nieuws" {...a11yProps(3)} />}
         </Tabs>
       </AppBar>
       <CardContent className={classes.content}>
@@ -93,12 +93,18 @@ const DataGraph = ({ nederlandData, globalData, allData }) => {
             allData={allData}
           />
         </TabPanel>
-        <TabPanel value={value} index={3} tabStyle={{ padding: 0 }}>
-          <FetchNewsItems />
-        </TabPanel>
+        {!hideNews && (
+          <TabPanel value={value} index={3} tabStyle={{ padding: 0 }}>
+            <FetchNewsItems />
+          </TabPanel>
+        )}
       </CardContent>
     </Card>
   )
+}
+
+DataGraph.defaultProps = {
+  hideNews: false,
 }
 
 export default DataGraph

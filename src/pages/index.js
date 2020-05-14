@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react"
 import CircularProgress from "@material-ui/core/CircularProgress"
-import { makeStyles, useTheme } from "@material-ui/core/styles"
-import useMediaQuery from "@material-ui/core/useMediaQuery"
+import { makeStyles } from "@material-ui/core/styles"
 import Alert from "@material-ui/lab/Alert"
+
 import Particles from "react-particles-js"
 
 import Layout from "../components/layout/layout"
@@ -24,10 +24,14 @@ const useStyles = makeStyles(theme => ({
   body: {
     width: "100%",
     height: "95vh",
-    padding: `${theme.spacing(4)}px`,
+    padding: theme.spacing(4),
     display: "flex",
     alignItems: "flex-start",
     justifyContent: "center",
+    [theme.breakpoints.down("sm")]: {
+      padding: 0,
+      paddingTop: theme.spacing(2),
+    },
   },
   poweredBy: {
     padding: theme.spacing(4),
@@ -116,9 +120,6 @@ const IndexPage = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(false)
   const classes = useStyles()
-  const theme = useTheme()
-  const isPortrait = useMediaQuery("(orientation: portrait)")
-  const smScreen = useMediaQuery(theme.breakpoints.down("xs"))
 
   useEffect(() => {
     // useEffect can't be a async function of itself
@@ -187,28 +188,20 @@ const IndexPage = () => {
     <Layout>
       <SEO title="Corona Tracker" />
       <CoronaParticles styling={classes.particles} />
-      {isPortrait && smScreen ? (
-        <Alert severity="info" className={classes.error}>
-          Deze app werkt alleen in landscape-modus.
-          <br />
-          Draai uw scherm om over te gaan naar landscape-modus.
-        </Alert>
-      ) : (
-        <div className={classes.body}>
-          {isLoading ? (
-            <div className={classes.spinner}>
-              <CircularProgress color="secondary" />
-            </div>
-          ) : (
-            <DataDisplay
-              data={covidData}
-              wiki={wikiData}
-              extendedWiki={extendedWikiData}
-              wikiRules={wikiRulesData}
-            />
-          )}
-        </div>
-      )}
+      <div className={classes.body}>
+        {isLoading ? (
+          <div className={classes.spinner}>
+            <CircularProgress color="secondary" />
+          </div>
+        ) : (
+          <DataDisplay
+            data={covidData}
+            wiki={wikiData}
+            extendedWiki={extendedWikiData}
+            wikiRules={wikiRulesData}
+          />
+        )}
+      </div>
     </Layout>
   )
 }
