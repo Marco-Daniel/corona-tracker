@@ -42,7 +42,7 @@ const LineChart = ({ data }) => {
       },
       data: {
         datasets: data.reduce((accumulator, country, i) => {
-          const multiplier = i + 1 // so it starts at 2 instead of 0
+          const multiplier = i + 1 // so it starts at 1 instead of 0
 
           accumulator.push(
             createDataSet(
