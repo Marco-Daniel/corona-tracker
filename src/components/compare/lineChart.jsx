@@ -11,7 +11,7 @@ const LineChart = ({ data }) => {
   const lastDate = new Date(data[data.length - 1].data.date)
 
   useEffect(() => {
-    new Chart(canvasRef.current, {
+    const chart = new Chart(canvasRef.current.getContext("2d"), {
       type: "line",
       options: {
         scales: {
@@ -65,6 +65,9 @@ const LineChart = ({ data }) => {
         }, []),
       },
     })
+
+    // clean-up before next render
+    return () => chart.destroy()
   }, [data, firstDate, lastDate])
 
   return (
