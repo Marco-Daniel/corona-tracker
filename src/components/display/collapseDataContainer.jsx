@@ -49,6 +49,14 @@ const useStyles = makeStyles(theme => ({
   expandOpen: {
     transform: "rotate(180deg)",
   },
+  wrapper: {
+    overflowY: "auto",
+    overflowX: "hidden",
+    height: "auto",
+    maxHeight: "65vh",
+    padding: theme.spacing(2),
+    marginBottom: theme.spacing(2),
+  },
 }))
 
 const CollapseDataContainer = ({
@@ -101,16 +109,18 @@ const CollapseDataContainer = ({
       </AppBar>
       <Collapse in={expanded} unmountOnExit>
         <CardContent style={{ padding: theme.spacing(padding) }}>
-          {useTypography ? (
-            <Typography
-              component="article"
-              dangerouslySetInnerHTML={{ __html: children }}
-              gutterBottom
-              className={classes.wikiData}
-            />
-          ) : (
-            children
-          )}
+          <div className={classes.wrapper}>
+            {useTypography ? (
+              <Typography
+                component="article"
+                dangerouslySetInnerHTML={{ __html: children }}
+                gutterBottom
+                className={classes.wikiData}
+              />
+            ) : (
+              children
+            )}
+          </div>
           {bottomCloseButton && (
             <div
               style={{
