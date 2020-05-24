@@ -69,43 +69,6 @@ const LatestData = ({ globalData, dataByCountry }) => {
         ]}
       />
     </CollapseDataContainer>
-
-    // <Card className={clsx(classes.root, { [classes.fullHeight]: expanded })}>
-    //   <AppBar position="static" className={classes.header}>
-    //     <IconButton
-    //       className={clsx(classes.expand, {
-    //         [classes.expandOpen]: expanded,
-    //       })}
-    //       onClick={handleExpandClick}
-    //       aria-expanded={expanded}
-    //       aria-label="verberg"
-    //       size="small"
-    //     >
-    //       <ExpandMoreIcon />
-    //     </IconButton>
-    //     <Typography className={classes.title} gutterBottom>
-    //       {`Laatste update: ${reverseDateString(latestGlobalData.date)}`}
-    //     </Typography>
-    //   </AppBar>
-    //   <Collapse in={expanded} unmountOnExit>
-    //     <CardContent>
-    //       <CompareDataTable
-    //         dataSets={[
-    //           { data: latestGlobalData, label: "Wereldwijd" },
-    //           { data: latestNederlandData, label: "Nederland" },
-    //           { data: latestBelgiumData, label: "België" },
-    //           { data: latestGermanyData, label: "Duitsland" },
-    //           { data: latestUKData, label: "Verenigd Koninkrijk" },
-    //           { data: latestFranceData, label: "Frankrijk" },
-    //           { data: latestItalyData, label: "Italië" },
-    //           { data: latestSpainData, label: "Spanje" },
-    //           { data: latestRussiaData, label: "Rusland" },
-    //           { data: latestUSData, label: "Verenigde Staten" },
-    //         ]}
-    //       />
-    //     </CardContent>
-    //   </Collapse>
-    // </Card>
   )
 }
 
