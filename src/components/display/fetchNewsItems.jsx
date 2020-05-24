@@ -57,8 +57,9 @@ const FetchNewsItems = () => {
         const nosBuitenlandURL =
           "https://corsify.appspot.com/http://feeds.nos.nl/nosnieuwsbuitenland"
 
-        const [rtlData, nosBinnenData, nosBuitenData] = await Promise.all([
-          fetchNetworkResource(rtlURL, rtlOptions),
+        const rtlData = []
+        const [nosBinnenData, nosBuitenData] = await Promise.all([
+          // fetchNetworkResource(rtlURL, rtlOptions),
           fetch(nosBinnenlandURL),
           fetch(nosBuitenlandURL),
         ])

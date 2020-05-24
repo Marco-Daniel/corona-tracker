@@ -8,11 +8,14 @@ const DisplayRtlNewsItems = ({ data }) => {
   const theme = useTheme()
   return (
     <>
-      <List>
+      {/* <List>
         {data.map(item => (
           <NewsItem key={item.url} item={item} />
         ))}
-      </List>
+      </List> */}
+      <Typography variant="h6" align="center">
+        Helaas is de RTL data momenteel niet beschikbaar.
+      </Typography>
       <Typography
         variant="caption"
         display="block"
