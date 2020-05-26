@@ -8,6 +8,7 @@ module.exports = {
     newsAPIKey: process.env.NEWS_API_KEY,
   },
   plugins: [
+    `gatsby-plugin-polyfill-io`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
